@@ -1,13 +1,20 @@
-import logo from './logo.svg';
+import "./page/login/login.css";
 import './App.css';
-import Navbar from "./component/Navbar";
-import Sidebar from "./component/SiteBar";
+
+import {Route, Routes} from "react-router-dom";
+import HomeLogin from "./page/login/HomeLogin";
+import Login from "./page/login/Login";
+import Register from "./page/login/Register";
 
 function App() {
   return (
     <>
-        <Navbar></Navbar>
-        <Sidebar></Sidebar>
+      <Routes>
+        <Route path={"/login"} element={<HomeLogin/>}>
+          <Route path={''} element={<Login/>}></Route>
+          <Route path={'register'} element={<Register/>}></Route>
+        </Route>
+      </Routes>
     </>
   );
 }
