@@ -7,72 +7,82 @@
 .logo {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 312px;
+    width: 100vw;
+    height: 35vh;
     background-color: #01710F;
 }
-.logo svg{
-    margin-top: 55px;
+
+.logo svg {
+    margin-top: 5vh;
 }
+
 .background-bottom {
     width: 100%;
-    height: 490px;
+    height: 65vh;
     background-color: #EBEBEB;
 }
 
-.form{
+.form {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 700px;
-    height: 70%;
-    max-height: 500px;
-    margin-top: 80px;
+    width: 80vw;
+    max-width: 80vh;
+    height: 80vh;
+    max-height: 55vh;
+    margin-top:3vh;
     background-color: #FFFFFF;
     background-size: cover;
-
     border-radius: 20px;
 }
+
 .form-title-text {
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 2.4vh;
+    margin-bottom: 2vh;
 }
-.form-title-text{
+
+.form-title-text {
     display: flex;
     justify-content: center;
-    font-size: 40px;
-    margin: 20px;
+    font-size: 4vh;
+    margin: 2vh;
     font-weight: bold;
 }
+
 .wrap-form-body {
     display: flex;
-    justify-content: center;;
-    margin-top:40px;
+    justify-content: center;
+    margin-top: 4vh;
 }
-.social-items{
+
+.social-items {
     display: flex;
     flex-direction: column;
-    width:300px ;
+    width: 35vh;
 }
-.social-items button{
-    margin-top: 20px;
-    height:43px ;
-}
-button{
-    border: 10px red;
-    border-radius: 10px;
-    font-weight: bold;
 
+.social-items button {
+    margin-top: 2vh;
+    height: 5vh;
 }
-button:hover{
+
+button {
+    border: 0.2vh solid springgreen ;
+    border-radius: 1vh;
+    font-weight: bold;
+}
+
+button:hover {
     background-color: #01710F;
+    border: none;
 }
-.v-btn__content{
-    margin-right: 10px;
+
+.v-btn__content {
+    margin-right: 1vh;
 }
+
 .ml-hr {
     display: flex;
     align-items: center;
@@ -81,48 +91,46 @@ button:hover{
 
 .ml-hr hr {
     flex-grow: 1;
-    height: 1px;
+    height: 0.1vh;
     background-color: #282c34;
-    margin: 0 20px;
+    margin: 0 2vh;
 }
 
 .ml-network {
     display: flex;
     flex-direction: column;
-    width:300px ;
+    width: 35vh;
 }
 
 .form-input {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 2vh;
 }
 
 .input {
     border: none;
     background-color: #E0E0E0;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 1vh;
+    padding: 1vh;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
     transition: border-color 0.3s;
 }
 
-.input:hover, .input:focus {
-    border: 3px solid springgreen;
+.input:hover,
+.input:focus {
+    border: 0.3vh solid springgreen;
 }
-
 
 .input::placeholder {
     text-align: start;
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 2vh;
+    line-height: 2vh;
 }
 
-
-
-.btn-form{
-    height: 35px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+.btn-form {
+    height: 3.5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
