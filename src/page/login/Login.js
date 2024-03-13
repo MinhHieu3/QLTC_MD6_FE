@@ -64,7 +64,7 @@ export default function Login() {
                                     <Field className={'input'} type={'text'} name={'password'}></Field>
                                     <Link to={"/edi"}>Forgot Password</Link>
                                     <button className={'btn-form'} type={'submit'}>Register</button>
-                                    <p> Don’t have an account? <Link to={'register'}>Register</Link></p>
+                                    <p> Don’t have an account?</p><Link to={'register'}>Register</Link>
                                 </div>
                             </div>
                         </Form>
