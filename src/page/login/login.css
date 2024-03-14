@@ -117,7 +117,6 @@ button:hover {
     margin-bottom: 2vh;
     transition: border-color 0.3s;
 }
-
 .input:hover,
 .input:focus {
     border: 0.3vh solid springgreen;
@@ -130,7 +129,7 @@ button:hover {
 }
 
 .btn-form {
-    height: 3.5vh;
+    height: 5vh;
     margin-top: 2vh;
     margin-bottom: 2vh;
 }

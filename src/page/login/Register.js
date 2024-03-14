@@ -1,8 +1,25 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
 import {useDispatch} from "react-redux";
+import {useState} from "react";
+import axios from "axios";
+import {getUsers} from "../../service/user/userService";
 
 export default function Register() {
+    const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    const [showConfirmPassword, setConfirmPassword] = useState(false);
+    const toggleConfirmPasswordVisibility = () => {
+        setConfirmPassword(!showConfirmPassword);
+    };
+    const handleRegister = async (values) => {
+        await axios.post(`http://localhost:8080/register`, values).then()
+        await navigate("/login")
+
+    }
     return (
         <>
             <div className="form">
@@ -62,10 +79,12 @@ export default function Register() {
                     </div>
                     <Formik initialValues={
                         {
-                            username: ''
+                            username: '',
+                            password: '',
+                            confirmPassword: '',
                         }
-                    } onSubmit={()=>{
-                        alert("done")
+                    } onSubmit={(values) => {
+                        handleRegister(values).then()
                     }
                     }>
                         <Form>
@@ -74,9 +93,42 @@ export default function Register() {
                                     <span>Using Money Lover account</span>
                                 </div>
                                 <div className="form-input">
-                                    <Field className={'input'} type={'text'} name={'username'} placeholder={" Email"} ></Field>
-                                    <Field className={'input'} type={'text'} name={'password'}></Field>
-                                    <Field className={'input'} type={'text'} name={'confirmpassword'}></Field>
+                                    <Field className={'input'} type={'text'} name={'username'}
+                                           placeholder={" Email"}></Field>
+                                    <div style={{position: 'relative'}}> {}
+                                        <Field className={'input'} type={showPassword ? 'text' : 'password'}
+                                               name={'password'} placeholder={" Password"}/>
+                                        <span
+                                            className="eye-icon"
+                                            style={{
+                                                position: 'absolute',
+                                                top: '35%',
+                                                right: '10px',
+                                                transform: 'translateY(-50%)',
+                                                cursor: 'pointer'
+                                            }}
+                                            onClick={togglePasswordVisibility}
+                                        >
+                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                </span>
+                                    </div>
+                                    <div style={{position: 'relative'}}> {}
+                                        <Field className={'input'} type={showConfirmPassword ? 'text' : 'password'}
+                                               name={'confirmPassword'} placeholder={" ConfirmPassword"}/>
+                                        <span
+                                            className="eye-icon"
+                                            style={{
+                                                position: 'absolute',
+                                                top: '35%',
+                                                right: '10px',
+                                                transform: 'translateY(-50%)',
+                                                cursor: 'pointer'
+                                            }}
+                                            onClick={toggleConfirmPasswordVisibility}
+                                        >
+                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                </span>
+                                    </div>
                                     <button className={'btn-form'} type={'submit'}>Register</button>
                                     <p> Have you an account? <Link to={'/login'}>Login</Link></p>
                                 </div>
