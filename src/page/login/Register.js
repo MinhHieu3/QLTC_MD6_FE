@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
-import {useDispatch} from "react-redux";
+// import {useDispatch} from "react-redux";
 
 export default function Register() {
     return (
