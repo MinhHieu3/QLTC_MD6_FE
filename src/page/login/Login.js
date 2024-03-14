@@ -3,20 +3,28 @@ import {Field, Form, Formik} from "formik";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {getUsers} from "../../service/user/userService";
+import CustomToast from "../toas/CustomToast";
+
 
 export default function Login() {
-    const dispatch = useDispatch()
-    const navigate=useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showToast, setShowToast] = useState(false);
     const handleLogin = async (values) => {
         await dispatch(getUsers(values))
-        await navigate("/home")
+        setShowToast(true);
+        setTimeout(() => {
+            navigate("/home");
+        }, 1000);
     }
-    const [showPassword, setShowPassword] = useState(false);
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
     return (
         <>
+            {showToast && <CustomToast message="Login done!"/>}
             <div className="form">
                 <div className="form-title-text">
                     <span>Login</span>
@@ -87,12 +95,19 @@ export default function Login() {
                                     <span>Using Money Lover account</span>
                                 </div>
                                 <div className="form-input">
-                                    <Field className={'input'} type={'text'} name={'username'} placeholder={" Email"} />
-                                    <div style={{ position: 'relative' }}> {}
-                                        <Field className={'input'} type={showPassword ? 'text' : 'password'} name={'password'} placeholder={" Password"} />
+                                    <Field className={'input'} type={'text'} name={'username'} placeholder={" Email"}/>
+                                    <div style={{position: 'relative'}}> {}
+                                        <Field className={'input'} type={showPassword ? 'text' : 'password'}
+                                               name={'password'} placeholder={" Password"}/>
                                         <span
                                             className="eye-icon"
-                                            style={{ position: 'absolute', top: '35%', right: '10px', transform: 'translateY(-50%)', cursor: 'pointer' }}
+                                            style={{
+                                                position: 'absolute',
+                                                top: '35%',
+                                                right: '10px',
+                                                transform: 'translateY(-50%)',
+                                                cursor: 'pointer'
+                                            }}
                                             onClick={togglePasswordVisibility}
                                         >
                     {showPassword ? '👁️' : '👁️‍🗨️'}
@@ -100,7 +115,7 @@ export default function Login() {
                                     </div>
                                     <Link to={"/edi"}>Forgot Password</Link>
                                     <button className={'btn-form'} type={'submit'}>Login</button>
-                                    <p> Don’t have an account?  <Link to={'register'}>Register</Link></p>
+                                    <p> Don’t have an account? <Link to={'register'}>Register</Link></p>
                                 </div>
                             </div>
                         </Form>
