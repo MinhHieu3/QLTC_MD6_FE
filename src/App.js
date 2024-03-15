@@ -1,4 +1,5 @@
 import "./page/login/login.css";
+import "./page/home/home.css";
 import './App.css';
 import Wallet from "./page/wallet/showWallet/showWallet";
 import {Route, Routes} from "react-router-dom";
@@ -25,11 +26,9 @@ function App() {
                         <Route path={'/home'} element={<Home/>}>
                         </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
-
                 }
             </Routes>
         </>
     );
 }
-
 export default App;
