@@ -1,11 +1,26 @@
 import "./showWallet.css"
+import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function Wallet() {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+    const [isTableVisible, setIsTableVisible] = useState(false);
+    const handleWalletDetailsClick = () => {
+        setIsTableVisible(!isTableVisible);
+    };
     return (
         <div className={"full-app"}>
             <div className={"wrap-my-wallet show-wallet-header"}>
                 <div className={"wrap-header-title"}>
-                    <a href="link_to_home_page" style={{margin: "20px", color:"black"}}>
+                    <a href="/home" style={{margin: "20px", color: "black"}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                              className="bi bi-arrow-left" viewBox="0 0 16 16">
                             <path fillRule="evenodd"
@@ -17,10 +32,11 @@ export default function Wallet() {
                     </span>
                 </div>
             </div>
-            <div className="container d-flex flex-column align-items-center">
-                <div className="wallet-container">
+            <div className=" d-flex flex-column align-items-center">
+                <div className={`wallet-container ${isHovered ? 'hovered' : ''}`}>
                     <div className="included-from-total-title">Excluded from Total</div>
-                    <div className="included-from-total-wallet d-flex bd-highlight">
+                    <div className="included-from-total-wallet d-flex bd-highlight" onMouseEnter={handleMouseEnter}
+                         onMouseLeave={handleMouseLeave} onClick={handleWalletDetailsClick}>
                         <div className="wallet-img p-2 bd-highlight">
                             <img className={"img-show-wallet"} src="https://static.moneylover.me/img/icon/icon.png"
                                  alt=""/>
@@ -31,6 +47,11 @@ export default function Wallet() {
                         </div>
                     </div>
                 </div>
+                {isTableVisible && (
+                    <div id="table">
+                        <Link to={'/add-wallets'}>check</Link>
+                    </div>
+                )}
             </div>
         </div>
 

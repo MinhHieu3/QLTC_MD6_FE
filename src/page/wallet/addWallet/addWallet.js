@@ -58,7 +58,6 @@ export default function AddWallet() {
                             </div>
                             <button type="submit" className="btn btn-primary" style={{marginTop:"20px"}}>Submit</button>
                             <button type="submit" className="btn btn-secorry" style={{marginTop:"20px"}}><Link to={"/home"}>Back</Link></button>
-
                         </Form>
                     </Formik>
                 </div>

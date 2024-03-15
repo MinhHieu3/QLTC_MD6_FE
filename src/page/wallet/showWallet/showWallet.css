@@ -54,7 +54,7 @@
     color: #8d8d8d;
 }
 .wallet-container {
-    width: 55%;
+    width: 35%;
     margin-top: 32px;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
@@ -75,4 +75,8 @@
 .input-wallet-info{
     margin-top: 10px;
     font-weight: 500 !important;
+}
+
+.wallet-container.hovered {
+    background-color: cadetblue; /* Change to your desired color */
 }

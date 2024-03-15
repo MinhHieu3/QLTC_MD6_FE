@@ -12,7 +12,7 @@ export default function Navbar() {
                             <img data-v-48ecc7dc="" src="https://static.moneylover.me/img/icon/icon.png"
                                  onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
                                  name="4" className="wallet-icon wallet-icon-all"
-                                 style={{width: '40px', height: '40px'}}/>
+                                 style={{width: '40px', height: '40px'}} alt={''}/>
                         </div>
                         <div className="menuspan">
                             <span className="name" style={{width: '82px', height: '21px'}}>Name</span>
