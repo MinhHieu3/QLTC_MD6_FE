@@ -1,4 +1,5 @@
 import "./page/login/login.css";
+import "./page/home/home.css";
 import './App.css';
 
 import {Route, Routes} from "react-router-dom";
@@ -25,7 +26,6 @@ function App() {
                         <Route path={'/home'} element={<Home/>}>
                         </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
-
                 }
             </Routes>
         </>
