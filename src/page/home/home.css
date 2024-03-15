@@ -1,218 +1,118 @@
-.nav-bar{
-    width: 100%;
-    height: 63px;
-
+.container-row {
+    display: flex;
 }
-.container-sidebar{
-    width: 100%;
-    height: 90vh;
 
+.sidebar-col-2 {
+    width: 5vw;
+    height: 100vh;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(247,247,247,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(247,247,247,1);
+    box-shadow: 10px 10px 5px 0px rgba(247,247,247,1);
 }
-.nav-sidebar-left{
+
+.content-col-10 {
+    width: calc(100% - 10vh);
     height: 100%;
-    width: 110px;
-    padding-top: 12px;
-
-
-
+    display: block;
 }
 
-.container {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-}
-
-.lib-item-tab {
+.nav-bar {
     width: 100%;
-    height: 64px;
+    height: 8vh;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(212,212,212,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(212,212,212,1);
+    box-shadow: 10px 10px 5px 0px rgba(212,212,212,1);
+}
+
+.middle {
+    width: 95vw;
+    height: 92vh;
+    background-color: #E4E4E4;
+    overflow: auto;
+}
+
+.transaction-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-
+    flex-direction: column
 }
 
-.lib-item-tab-left {
+.transaction-container > button {
+
+}
+.sidebar-icon-home {
     display: flex;
-    align-items: center;
-    padding-left: 30px;
-}
-
-.wallet-tool-bar {
-    width: 140px;
-    height: 48px;
-    /*display: flex;*/
-    /*align-items: center;*/
-}
-
-.wallet-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.name {
-    margin-left: 10px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, .87);
-    line-height: 21px;
-    position: relative;
-}
-
-.amount {
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-}
-
-.lib-item-tab-right {
-    display: flex;
-    align-items: center;
-    margin-right: -500px;
-
-}
-.transaction-container{
-    display: flex;
-    flex-direction: column;
-    width: 80px;
-    height: 312px;
-}
-.master-detail-container{
-
-    width: 1412px;
-    height: 484px;
-}
-.menubutton{
-    display: flex;
-    justify-content: space-between;
-}
-.my-span{
-    margin-right: 10px;
-    border: none;
-}
-.lib-item-tab-left-toolbar{
-    display: flex;
-    align-items: center;
-}
-.wallet-tool-bar {
-    margin-right: 10px;
-    margin-left: 16px;
-}
-.wallet-icon {
-    width: 40px;
-    height: 40px;
-}
-.menuspan {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    margin-left: -107px;
-    margin-top: -8px;
-}
-.name,
-.amount {
-    width: 82px;
-    height: 21px;
+    width: 5vw;
+    height: 9vh;
+    transition: background-color 0.3s ease;
 }
 
-.site-bar:hover {
-    background-color: #f0f0f0;
-}
-.site-bar:last-child {
-    margin-right: 0;
-}
-
-.site-bar svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-.site-bar span {
-    font-size: 14px; /* Điều chỉnh kích thước chữ */
-}
-.lib-item-tab {
-    width: 100%;
-    height: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    background-color: #FFFFFF;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-.lib-item-tab-left {
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-}
-.wallet-tool-bar {
-    width: 140px;
-    height: 48px;
-    margin-left:-100px;
-}
-.wallet-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.name {
-    margin-left: 10px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, .87);
-    line-height: 21px;
-    position: relative;
-}
-.amount {
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-}
-.lib-item-tab-right {
-    margin-right: -500px;
-    display: flex;
-    align-items: center;
-}
-.menuspan {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-}
-.site-bar {
-    padding: 10px;
-    width: 110px; /* Kích thước chiều rộng */
-    height: 70px; /* Kích thước chiều cao */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 5px;
+.sidebar-icon-home:hover {
+    background-color: #F5F5F5;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 10px;
-    border: 2px solid transparent; /* Viền trong suốt ban đầu */
-    outline: none; /* Loại bỏ đường viền khi focus */
 }
 
-.site-bar:hover {
-    background-color: #36ff2f;
+.sidebar-icon-home svg {
+    width: 3vw;
+    height: 3vh;
+    margin-top: 2vh;
 }
 
-.site-bar svg {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+.lib-item-tab {
+    display: flex;
+    justify-content: space-between;
 }
 
-.site-bar span {
-    font-size: 14px;
+.lib-item-tab-left {
+    display: flex;
+    justify-content: center;
+    margin-left: 2vw;
+    cursor: pointer
+
 }
-.menubutton button.my-span:hover {
-    background-color: #36ff2f; /* Màu sắc mong muốn khi hover */
-    color: black; /* Màu chữ khi hover */
+
+.lib-item-tab-left-toolbar {
+    margin: 1.5vh;
+
+}
+
+.content-wallet {
+    margin-top: 2vh;
+}
+
+.lib-item-tab-right {
+    display: flex;
+    justify-content: center;
+    padding: 2.5vh;
+}
+
+.lib-item-tab-left-toolbar img {
+    width: 5vh;
+    height: 5vh;
+
+
+}
+
+.icon-jumptoday {
+    margin-right: 2vw;
+    position: relative;
+}
+.today {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
+
+.icon-eyes {
+    margin-right: 2vw;
+
+}
+
+.icon-search {
+    margin-right: 3vw;
+}
+.lib-item-tab-right {
+    cursor: pointer
 }

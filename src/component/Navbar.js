@@ -1,60 +1,43 @@
-
 import React from "react";
 
 export default function Navbar() {
     return (
         <>
             <div className="lib-item-tab">
-                <div className="lib-item-tab-left" style={{width: '700px', height: '48px', marginLeft: '-29px'}}>
+                <div className="lib-item-tab-left">
                     <div className="lib-item-tab-left-toolbar">
-                        <div className={'icon-menu'}> <span className='site-bar'></span></div>
-                        <div className="wallet-tool-bar">
-                            <img data-v-48ecc7dc="" src="https://static.moneylover.me/img/icon/icon.png"
-                                 onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
-                                 name="4" className="wallet-icon wallet-icon-all"
-                                 style={{width: '40px', height: '40px'}}/>
-                        </div>
-                        <div className="menuspan">
-                            <span className="name" style={{width: '82px', height: '21px'}}>Name</span>
-
-                            <span className="amount" style={{width: '82px', height: '21px'}}>Số Tiền</span>
-                        </div>
+                        <img data-v-48ecc7dc="" src="https://static.moneylover.me/img/icon/icon.png"
+                             onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
+                             name="4" className="wallet-icon wallet-icon-all"/>
+                    </div>
+                    <div className="content-wallet">
+                        <p>Money</p>
                     </div>
                 </div>
-
-                <div className="lib-item-tab-right" style={{width: '700px', height: '48px'}}>
-                    <div className="menubutton">
-                        <button className="my-span" style={{width: '40px', height: '40px'}}><span data-v-6240d44b=""
-                                                                                                  className="today"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            className="bi bi-calendar-date" viewBox="0 0 16 16">
-  <path
-      d="M6.445 11.688V6.354h-.633A13 13 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23"/>
-  <path
-      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-</svg></span>
-                        </button>
-                        <button className="my-span" style={{width: '40px', height: '40px'}}><span
-                            className="today"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                   fill="currentColor" className="bi bi-eye-slash"
-                                                   viewBox="0 0 16 16">
-  <path
-      d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-  <path
-      d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-  <path
-      d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
-</svg></span></button>
-                        <button className="my-span" style={{width: '40px', height: '40px'}}><span
-                            className="today"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                   fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-  <path
-      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-</svg></span></button>
+                <div className="lib-item-tab-right">
+                    <div className="icon-jumptoday">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24" height="24" viewBox="0 0 24 24"
+                             aria-labelledby="ic_calendar_empty" version="1.1">
+                            <defs></defs>
+                            <g id="Icons/account/ic_account" stroke="none" strokeWidth="1"
+                               fill="rgba(0,0,0,0.54)" fillRule="evenodd">
+                                <rect id="blue-background" fillOpacity="0" fill="#FFFFFF" x="0"
+                                      y="0" width="24" height="24"></rect>
+                                <path
+                                    d="M16,1 L16,3 L8,3 L8,1 L6,1 L6,3 L5,3 C3.895,3 3.01,3.895 3.01,5 L3,19 C3,20.105 3.895,21 5,21 L19,21 C20.105,21 21,20.105 21,19 L21,5 C21,3.895 20.105,3 19,3 L18,3 L18,1 L16,1 L16,1 Z M5,19 L5,8 L19,8 L19,19 L5,19 Z"
+                                    id="Shape"></path>
+                            </g>
+                        </svg>
+                        <span data-v-6240d44b="" className="today">15</span>
                     </div>
-
+                    <div className="icon-eyes">
+                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_view_by_category" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="rgba(0,0,0,0.54)" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-0698e127="" d="M22.3161056,13.4417307 L17.75,11.25 L16.9855232,11.6169489 C16.7896764,9.03569417 14.6311241,7 12,7 C9.24,7 7,9.24 7,12 C7,14.5912586 8.97447379,16.7241572 11.5,16.9752745 L11.5,19.4895971 C6.71674598,19.2901826 2.672042,16.2429274 1,12 C2.73,7.61 7,4.5 12,4.5 C17.005,4.5 21.27,7.61 23,12 C22.8037753,12.4979344 22.5749374,12.9794014 22.3161056,13.4417307 Z M14.9400559,12.5987732 L11.5,14.25 L11.5,14.9583906 C10.0824015,14.7198722 9,13.4846738 9,12 C9,10.345 10.345,9 12,9 C13.655,9 15,10.345 15,12 C15,12.2050033 14.9793629,12.40525 14.9400559,12.5987732 Z"></path> <path data-v-0698e127="" d="M17.25,23 L12.5,20.8023256 L12.5,16.1627907 L17.25,18.3604651 L17.25,23 Z M18.25,23 L18.25,18.3604651 L23,16.1627907 L23,20.8023256 L18.25,23 Z M12.5,14.9418605 L17.75,12.5 L23,14.9418605 L17.75,17.3837209 L12.5,14.9418605 Z"></path></g></svg>
+                    </div>
+                    <div className="icon-search">
+                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_search" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="rgba(0,0,0,0.54)" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-6240d44b="" d="M16.8472,15.1496 L16.564,15.4328 L15.5056,14.3744 C16.5632,13.068 17.2,11.408 17.2,9.6 C17.2,5.4096 13.7904,2 9.6,2 C5.4096,2 2,5.4096 2,9.6 C2,13.7904 5.4096,17.2 9.6,17.2 C11.408,17.2 13.068,16.5632 14.3744,15.5056 L15.4328,16.564 L15.1496,16.8472 L19.9512,21.6488 L21.648,19.952 L16.8472,15.1496 L16.8472,15.1496 Z M9.6008,14.8 C6.7336,14.8 4.4008,12.4672 4.4008,9.6 C4.4008,6.7328 6.7336,4.4 9.6008,4.4 C12.468,4.4 14.8008,6.7328 14.8008,9.6 C14.8008,12.4672 12.4672,14.8 9.6008,14.8 L9.6008,14.8 Z" id="icon-search" data-v-0698e127=""></path></g></svg>
+                    </div>
                 </div>
-
             </div>
 
 
