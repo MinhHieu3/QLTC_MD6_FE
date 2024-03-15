@@ -1,4 +1,3 @@
-import {formToJSON} from "axios";
 import Navbar from "../../component/Navbar";
 import Sidebar from "../../component/SideBar";
 import {Outlet} from "react-router-dom";
@@ -21,5 +20,4 @@ export default function Home() {
             </div>
         </>
     )
-
 }

@@ -17,14 +17,10 @@ export default function Register() {
         setConfirmPassword(!showConfirmPassword);
     };
     const handleRegister = async (values) => {
-        await axios.post(`http://localhost:8080/register`, values).then(
-        )
+        await axios.post(`http://localhost:8080/register`, values).then()
         await navigate("/login")
 
     }
-
-
-
     return (
         <>
             <div className="form">
@@ -37,7 +33,7 @@ export default function Register() {
                             <span>Using social networking accounts</span>
                         </div>
                         <div className="social-items">
-                            <button >
+                            <button>
                                 <span className={"v-btn__content"}>
                                 <svg data-v-8cacc26a="" id="Group_818" data-name="Group 818"
                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
