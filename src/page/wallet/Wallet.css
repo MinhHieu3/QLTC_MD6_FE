@@ -1,0 +1,105 @@
+.container-wallet {
+    margin-top: 10vh;
+    width: 40vw;
+    height: 50vh;
+    background-color: white;
+    border-radius: 8px;
+    -webkit-box-shadow: -6px 10px 25px -6px rgba(201,201,201,0.75);
+    -moz-box-shadow: -6px 10px 25px -6px rgba(201,201,201,0.75);
+    box-shadow: -6px 10px 25px -6px rgba(201,201,201,0.75);}
+.nav-create-wallet{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 40vw;
+    height: 5vh;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: #F4F4F4;
+
+}
+.btn-show-form {
+    width: 5.5vw;
+    height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-right: 0.3vw;
+    background-color: #A8A8A8;
+    transition: all 0.3s ease;
+}
+
+.btn-show-form:hover {
+    transform: scale(0.9);
+}
+
+.btn-show-form svg {
+    width: 6vw;
+    height: 6vh;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-show-form p {
+    margin: 5% 3px;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-weight: bold
+}
+
+.btn-show-form:hover svg,
+.btn-show-form:hover p {
+    transform: scale(1.1);
+}
+.nav-date {
+    width: 40vw;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-lastMonth, .btn-thisMonth, .btn-future {
+    width: 12vw;
+    height: 5vh;
+    margin-top: 3vh;
+
+}
+.btn-thisMonth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-lastMonth{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.btn-future{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.btn-lastMonth p, .btn-thisMonth p, .btn-future p {
+    margin: 0;
+    color:#A8A8A8;
+    font-weight: bold;
+}
+.btn-lastMonth p:hover,
+.btn-thisMonth p:hover,
+.btn-future p:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+
+}
+
+
+.hr {
+    width: 80%;
+    border-top: 1px solid black;
+}

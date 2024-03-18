@@ -33,6 +33,8 @@
     height: 92vh;
     background-color: #E4E4E4;
     overflow: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .transaction-container {
@@ -72,10 +74,12 @@
     display: flex;
     justify-content: center;
     margin-left: 2vw;
-    cursor: pointer
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 .lib-item-tab-left:hover {
     background-color: #F5F5F5;
+    transform: scale(0.9);
 }
 
 .lib-item-tab-left-toolbar {
