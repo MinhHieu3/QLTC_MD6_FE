@@ -1,9 +1,10 @@
 import {Link, useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
-import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../../service/user/userService";
 import CustomToast from "../toas/CustomToast";
+import {getWallets} from "../../service/wallet/walletService";
 
 
 export default function Login() {
@@ -11,20 +12,42 @@ export default function Login() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showToast, setShowToast] = useState(false);
+    const [showToastFail, setShowToastFail] = useState(false);
+    useEffect(() => {
+        localStorage.removeItem('loginError');
+    }, []);
+
     const handleLogin = async (values) => {
-        await dispatch(getUsers(values))
-        setShowToast(true);
-        setTimeout(() => {
-            navigate("/home");
-        }, 1000);
-    }
+        try {
+            await dispatch(getUsers(values)); // Dispatch getUsers action
+            const error = localStorage.getItem('loginError');
+            if (error !== null) {
+                setShowToast(false);
+                setShowToastFail(true);
+                localStorage.removeItem('loginError');
+            } else {
+
+                setShowToastFail(false);
+                setShowToast(true);
+                setTimeout(() => {
+                    navigate('/home');
+
+                }, 3000)
+
+            }
+        } catch (error) {
+            setShowToast(false);
+            setShowToastFail(true);
+        }
+    };
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-    return (
-        <>
+    return (<>
             {showToast && <CustomToast message="Login done!"/>}
+            {showToastFail && <CustomToast message="Login no!"/>}
             <div className="form">
                 <div className="form-title-text">
                     <span>Login</span>
@@ -80,15 +103,11 @@ export default function Login() {
                     <div className="ml-hr">
                         <hr/>
                     </div>
-                    <Formik initialValues={
-                        {
-                            username: '',
-                            password: '',
-                        }
-                    } onSubmit={(values) => {
+                    <Formik initialValues={{
+                        username: '', password: '',
+                    }} onSubmit={(values) => {
                         handleLogin(values).then()
-                    }
-                    }>
+                    }}>
                         <Form>
                             <div className="ml-network">
                                 <div className="using-ml-account-text">

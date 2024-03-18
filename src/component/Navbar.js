@@ -1,18 +1,40 @@
-
-import React from "react";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import "./Navbar.css";
+import {hydrateRoot} from "react-dom/client";
 
 export default function Navbar() {
+    const wallets = useSelector(state => state.wallets.wallets);
+    let firstWallet = null;
+    if (wallets.length > 0) {
+        firstWallet = wallets[0];
+    }
+    const [isShow, setIsShow] = useState(false);
+    const handleClick = () => {
+        setIsShow(!isShow);
+    };
     return (
         <>
             <div className="lib-item-tab">
-                <div className="lib-item-tab-left">
-                    <div className="lib-item-tab-left-toolbar">
-                        <img data-v-48ecc7dc="" src="https://static.moneylover.me/img/icon/icon.png"
-                             onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
-                             name="4" className="wallet-icon wallet-icon-all"/>
+                <div className="lib-item-tab-left" onClick={handleClick}>
+                    <div className="lib-item-tab-left-toolbar" >
+                        <img
+                            data-v-48ecc7dc=""
+                            src="https://static.moneylover.me/img/icon/icon.png"
+                            onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
+                            name="4"
+                            className="wallet-icon wallet-icon-all"
+                        />
                     </div>
                     <div className="content-wallet">
-                        <p>Money</p>
+                        {firstWallet && (
+                            <>
+                                <p>{firstWallet.name}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z" />
+                                </svg></p>
+                                <span>+{firstWallet.money}</span>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="lib-item-tab-right">
@@ -33,16 +55,59 @@ export default function Navbar() {
                         <span data-v-6240d44b="" className="today">15</span>
                     </div>
                     <div className="icon-eyes">
-                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_view_by_category" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="rgba(0,0,0,0.54)" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-0698e127="" d="M22.3161056,13.4417307 L17.75,11.25 L16.9855232,11.6169489 C16.7896764,9.03569417 14.6311241,7 12,7 C9.24,7 7,9.24 7,12 C7,14.5912586 8.97447379,16.7241572 11.5,16.9752745 L11.5,19.4895971 C6.71674598,19.2901826 2.672042,16.2429274 1,12 C2.73,7.61 7,4.5 12,4.5 C17.005,4.5 21.27,7.61 23,12 C22.8037753,12.4979344 22.5749374,12.9794014 22.3161056,13.4417307 Z M14.9400559,12.5987732 L11.5,14.25 L11.5,14.9583906 C10.0824015,14.7198722 9,13.4846738 9,12 C9,10.345 10.345,9 12,9 C13.655,9 15,10.345 15,12 C15,12.2050033 14.9793629,12.40525 14.9400559,12.5987732 Z"></path> <path data-v-0698e127="" d="M17.25,23 L12.5,20.8023256 L12.5,16.1627907 L17.25,18.3604651 L17.25,23 Z M18.25,23 L18.25,18.3604651 L23,16.1627907 L23,20.8023256 L18.25,23 Z M12.5,14.9418605 L17.75,12.5 L23,14.9418605 L17.75,17.3837209 L12.5,14.9418605 Z"></path></g></svg>
+                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg"
+                             xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"
+                             aria-labelledby="ic_view_by_category" version="1.1">
+                            <defs data-v-0698e127=""></defs>
+                            <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1"
+                               fill="rgba(0,0,0,0.54)" fill-rule="evenodd">
+                                <rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0"
+                                      y="0"
+                                      width="24" height="24"></rect>
+                                <path data-v-0698e127=""
+                                      d="M22.3161056,13.4417307 L17.75,11.25 L16.9855232,11.6169489 C16.7896764,9.03569417 14.6311241,7 12,7 C9.24,7 7,9.24 7,12 C7,14.5912586 8.97447379,16.7241572 11.5,16.9752745 L11.5,19.4895971 C6.71674598,19.2901826 2.672042,16.2429274 1,12 C2.73,7.61 7,4.5 12,4.5 C17.005,4.5 21.27,7.61 23,12 C22.8037753,12.4979344 22.5749374,12.9794014 22.3161056,13.4417307 Z M14.9400559,12.5987732 L11.5,14.25 L11.5,14.9583906 C10.0824015,14.7198722 9,13.4846738 9,12 C9,10.345 10.345,9 12,9 C13.655,9 15,10.345 15,12 C15,12.2050033 14.9793629,12.40525 14.9400559,12.5987732 Z"></path>
+                                <path data-v-0698e127=""
+                                      d="M17.25,23 L12.5,20.8023256 L12.5,16.1627907 L17.25,18.3604651 L17.25,23 Z M18.25,23 L18.25,18.3604651 L23,16.1627907 L23,20.8023256 L18.25,23 Z M12.5,14.9418605 L17.75,12.5 L23,14.9418605 L17.75,17.3837209 L12.5,14.9418605 Z"></path>
+                            </g>
+                        </svg>
                     </div>
                     <div className="icon-search">
-                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_search" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="rgba(0,0,0,0.54)" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-6240d44b="" d="M16.8472,15.1496 L16.564,15.4328 L15.5056,14.3744 C16.5632,13.068 17.2,11.408 17.2,9.6 C17.2,5.4096 13.7904,2 9.6,2 C5.4096,2 2,5.4096 2,9.6 C2,13.7904 5.4096,17.2 9.6,17.2 C11.408,17.2 13.068,16.5632 14.3744,15.5056 L15.4328,16.564 L15.1496,16.8472 L19.9512,21.6488 L21.648,19.952 L16.8472,15.1496 L16.8472,15.1496 Z M9.6008,14.8 C6.7336,14.8 4.4008,12.4672 4.4008,9.6 C4.4008,6.7328 6.7336,4.4 9.6008,4.4 C12.468,4.4 14.8008,6.7328 14.8008,9.6 C14.8008,12.4672 12.4672,14.8 9.6008,14.8 L9.6008,14.8 Z" id="icon-search" data-v-0698e127=""></path></g></svg>
+                        <svg data-v-0698e127="" data-v-6240d44b="" xmlns="http://www.w3.org/2000/svg"
+                             xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"
+                             aria-labelledby="ic_search" version="1.1">
+                            <defs data-v-0698e127=""></defs>
+                            <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1"
+                               fill="rgba(0,0,0,0.54)" fill-rule="evenodd">
+                                <rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0"
+                                      y="0"
+                                      width="24" height="24"></rect>
+                                <path data-v-6240d44b=""
+                                      d="M16.8472,15.1496 L16.564,15.4328 L15.5056,14.3744 C16.5632,13.068 17.2,11.408 17.2,9.6 C17.2,5.4096 13.7904,2 9.6,2 C5.4096,2 2,5.4096 2,9.6 C2,13.7904 5.4096,17.2 9.6,17.2 C11.408,17.2 13.068,16.5632 14.3744,15.5056 L15.4328,16.564 L15.1496,16.8472 L19.9512,21.6488 L21.648,19.952 L16.8472,15.1496 L16.8472,15.1496 Z M9.6008,14.8 C6.7336,14.8 4.4008,12.4672 4.4008,9.6 C4.4008,6.7328 6.7336,4.4 9.6008,4.4 C12.468,4.4 14.8008,6.7328 14.8008,9.6 C14.8008,12.4672 12.4672,14.8 9.6008,14.8 L9.6008,14.8 Z"
+                                      id="icon-search" data-v-0698e127=""></path>
+                            </g>
+                        </svg>
                     </div>
                 </div>
+            </div>
+            <div className={`form-sidebar ${isShow ? 'show' : ''}`}>
+                <div className="included-from-total-title">Excluded from Total</div>
+                {wallets.map((wallet, index) => (
+                    <div key={wallet.id} className="included-from-total-wallet d-flex bd-highlight">
+                        <div className="wallet-img p-2 bd-highlight">
+                            <img className="img-show-wallet" src="https://static.moneylover.me/img/icon/icon.png" alt="" />
+                        </div>
+                        <div className="wallet-info p-2 flex-grow-1 bd-highlight">
+                            <span className="align-self-start input-wallet-info">{wallet.name}</span>
+                            <span className="align-self-start">+{wallet.money}đ</span>
+                        </div>
+                        <hr/>
+                    </div>
+                ))}
             </div>
 
 
         </>
 
-    );
+    )
+        ;
 }

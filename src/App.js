@@ -1,5 +1,6 @@
 import "./page/login/login.css";
 import "./page/home/Home.css";
+
 import './App.css';
 import {Route, Routes} from "react-router-dom";
 import Wallet from "./page/wallet/showWallet/ShowWallet";
@@ -17,16 +18,17 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path={'/wallets'} element={<Wallet/>}></Route>
-                <Route path={'/add-wallets'} element={<AddWallet/>}></Route>
+
                 <Route path={"/login"} element={<HomeLogin/>}>
                     <Route path={''} element={<Login/>}></Route>
                     <Route path={'register'} element={<Register/>}></Route>
                 </Route>
                 {
                     users !== null ?
-                        <Route path={'/home'} element={<Home/>}>
+                        <Route path={'home'} element={<Home/>}>
 
+                            <Route path={'wallets'} element={<Wallet/>}></Route>
+                            <Route path={'add-wallets'} element={<AddWallet/>}></Route>
                         </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
                 }
