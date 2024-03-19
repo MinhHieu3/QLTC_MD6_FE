@@ -1,23 +1,45 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "./Navbar.css";
 import {hydrateRoot} from "react-dom/client";
+import {getIndexWallet} from "../service/wallet/walletService";
+import {useNavigate} from "react-router-dom";
 
 export default function Navbar() {
     const wallets = useSelector(state => state.wallets.wallets);
-    let firstWallet = null;
-    if (wallets.length > 0) {
-        firstWallet = wallets[0];
-    }
+    const selectedWalletIndex = useSelector(state => state.wallets.index);
     const [isShow, setIsShow] = useState(false);
+    const dispatch = useDispatch();
+    const firstWallet = wallets[selectedWalletIndex];
+    const navigate=useNavigate();
     const handleClick = () => {
         setIsShow(!isShow);
     };
+
+    const choiceWallet = (index) => {
+        dispatch(getIndexWallet(index));
+        navigate('/home')
+
+    };
+
+    const handleOutsideClick = (event) => {
+        if (!event.target.closest('.lib-item-tab')) {
+            setIsShow(false);
+        }
+    };
+
+    React.useEffect(() => {
+        document.addEventListener("click", handleOutsideClick);
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        };
+    }, []);
+
     return (
         <>
             <div className="lib-item-tab">
                 <div className="lib-item-tab-left" onClick={handleClick}>
-                    <div className="lib-item-tab-left-toolbar" >
+                    <div className="lib-item-tab-left-toolbar">
                         <img
                             data-v-48ecc7dc=""
                             src="https://static.moneylover.me/img/icon/icon.png"
@@ -29,10 +51,12 @@ export default function Navbar() {
                     <div className="content-wallet">
                         {firstWallet && (
                             <>
-                                <p>{firstWallet.name}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M7 10l5 5 5-5z" />
-                                </svg></p>
-                                <span>+{firstWallet.money}</span>
+                                <p>{firstWallet.name}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M7 10l5 5 5-5z"/>
+                                    </svg>
+                                </p>
+                                <span>+{firstWallet.money} đ</span>
                             </>
                         )}
                     </div>
@@ -94,9 +118,11 @@ export default function Navbar() {
                 {wallets.map((wallet, index) => (
                     <div key={wallet.id} className="included-from-total-wallet d-flex bd-highlight">
                         <div className="wallet-img p-2 bd-highlight">
-                            <img className="img-show-wallet" src="https://static.moneylover.me/img/icon/icon.png" alt="" />
+                            <img className="img-show-wallet" src="https://static.moneylover.me/img/icon/icon.png"
+                                 alt=""/>
                         </div>
-                        <div className="wallet-info p-2 flex-grow-1 bd-highlight">
+                        <div className="wallet-info p-2 flex-grow-1 bd-highlight" onClick={() => choiceWallet(index)}>
+
                             <span className="align-self-start input-wallet-info">{wallet.name}</span>
                             <span className="align-self-start">+{wallet.money}đ</span>
                         </div>
@@ -105,9 +131,7 @@ export default function Navbar() {
                 ))}
             </div>
 
-
         </>
-
     )
         ;
 }

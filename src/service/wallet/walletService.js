@@ -43,3 +43,9 @@ export const searchWallet = createAsyncThunk(
         return data
     }
 )
+export const getIndexWallet=createAsyncThunk(
+    'wallét/getIndex',
+    async (index)=>{
+        return index
+    }
+)

@@ -1,31 +1,48 @@
 import "./Wallet.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Wallet() {
+    const wallets = useSelector(state => state.wallets.wallets);
+    const selectedWalletIndex = useSelector(state => state.wallets.index);
+    const wallet = wallets[selectedWalletIndex];
+    const total = wallet ? (wallet.money || 0) : 0;
+
     return (
         <>
-            <div className="container-wallet">
-                <div className="nav-create-wallet">
+            <Link to={'add-wallets'} className={'nav-create-wallet'}>
                     <div className="btn-show-form">
-                        <p>Create</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="30" height="30" style={{border: 'none'}}>
-                            <rect x="20" y="40" width="60" height="20" style={{fill:'#40A551'}} />
-                            <rect x="40" y="20" width="20" height="60" style={{fill:'#40A551'}} />
-                        </svg>
+                        Add Transactions
+                    </div>
+            </Link>
+            {wallet && (
+                <div className="container-wallet">
+                    <div className="nav-date">
+                        <div className="btn-lastMonth">
+                            <p>Last Month</p>
+                        </div>
+                        <div className="btn-thisMonth">
+                            <p>This Month</p>
+                        </div>
+                        <div className="btn-future">
+                            <p>Future</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="total-wallet">
+                        <div className="name-total-wallet">
+                            <p>Inflow</p>
+                            <p>Outflow</p>
+                        </div>
+                        <div className="info-wallet">
+                            <p>+ {wallet.money} đ</p>
+                            <p>0 đ</p>
+                            <hr />
+                            <p>+{total} đ</p>
+                        </div>
                     </div>
                 </div>
-                <div className="nav-date">
-                   <div className="btn-lastMonth">
-                       <p>Last Month</p>
-                   </div>
-                   <div className="btn-thisMonth">
-                       <p>This Month</p>
-                   </div>
-                   <div className="btn-future">
-                       <p>Future</p>
-                   </div>
-                </div>
-                <hr/>
-            </div>
+            )}
         </>
     )
 }

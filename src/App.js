@@ -11,13 +11,11 @@ import AddWallet from "./page/wallet/addWallet/AddWallet";
 import Wallet from "./page/wallet/Wallet";
 function App() {
     const users = useSelector(state => {
-        console.log(state.users.users)
         return state.users.users
     })
     return (
         <>
             <Routes>
-
                 <Route path={"/login"} element={<HomeLogin/>}>
                     <Route path={''} element={<Login/>}></Route>
                     <Route path={'register'} element={<Register/>}></Route>
