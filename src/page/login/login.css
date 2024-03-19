@@ -24,13 +24,13 @@
 
 .form {
     position: absolute;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80vw;
     max-width: 80vh;
-    height: 80vh;
-    max-height: 55vh;
+    height: 100vh;
+    max-height: 60vh;
     margin-top:3vh;
     background-color: #FFFFFF;
     background-size: cover;
@@ -143,4 +143,7 @@ button:hover {
     padding: 10px 20px;
     border-radius: 5px;
     z-index: 9999;
+}
+.error{
+    color: red;
 }

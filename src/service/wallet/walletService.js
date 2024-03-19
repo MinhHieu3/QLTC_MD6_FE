@@ -5,7 +5,6 @@ import axios from "axios";
 export const getWallets = createAsyncThunk(
     'wallets/getWallets',
     async ({id, token}) => {
-        console.log(token)
         const res = await axios.get(`http://localhost:8080/users/wallets/`+ id, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -30,16 +29,14 @@ export const editWallet = createAsyncThunk(
 )
 export const addWallet = createAsyncThunk(
     'wallets/addWallet',
-    async (data) => {
-        const res = await axios.post('http://localhost:8080/users/wallets', data)
-        console.log(res.data)
+    async (values) => {
+        const res = await axios.post('http://localhost:8080/users/wallets', values)
         return res.data
     }
 )
 export const searchWallet = createAsyncThunk(
     'wallets/searchWallet',
     async (data) => {
-        console.log(data)
         return data
     }
 )

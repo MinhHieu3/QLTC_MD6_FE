@@ -1,14 +1,21 @@
 import {Link, useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
-import {useDispatch} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import {getUsers} from "../../service/user/userService";
-import {toast} from "react-toastify";
+import * as Yup from "yup";
+import CustomToast from "../toas/CustomToast";
+import {useDispatch} from "react-redux";
+import {createUsers, getUsers} from "../../service/user/userService";
 
 export default function Register() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [showToastFail, setShowToastFail] = useState(false);
+    useEffect(() => {
+        localStorage.removeItem('registerError');
+    }, []);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -16,13 +23,44 @@ export default function Register() {
     const toggleConfirmPasswordVisibility = () => {
         setConfirmPassword(!showConfirmPassword);
     };
-    const handleRegister = async (values) => {
-        await axios.post(`http://localhost:8080/register`, values).then()
-        await navigate("/login")
+    const validationSchema = Yup.object().shape({
+        username: Yup.string()
+            .matches(/^[a-zA-Z0-9]+@gmail\.com$/, 'Invalid username format')
+            .required('Username is required'),
+        password: Yup.string()
+            .min(8, 'Invalid username format')
+            .matches(/^[^\s$!%*?&^]+$/, 'Invalid username format')
+            .required('Password is required'),
+        confirmPassword: Yup.string()
+            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+            .required('Confirm Password is required')
+    });
 
+    const handleRegister = async (values) => {
+        try {
+            await dispatch(createUsers(values));
+            const error = localStorage.getItem('registerError');
+            if (error !== null) {
+                setShowToast(false);
+                setShowToastFail(true);
+                localStorage.removeItem('registerError');
+            } else {
+                setShowToastFail(false);
+                setShowToast(true);
+                setTimeout(() => {
+                    navigate('/login');
+                }, 1000)
+
+            }
+        } catch (error) {
+            setShowToast(false);
+            setShowToastFail(true);
+        }
     }
     return (
         <>
+            {showToast && <CustomToast message="Account registered successfully !"/>}
+            {showToastFail && <CustomToast message="Your account already exists !"/>}
             <div className="form">
                 <div className="form-title-text">
                     <span>Register</span>
@@ -78,63 +116,77 @@ export default function Register() {
                     <div className="ml-hr">
                         <hr/>
                     </div>
-                    <Formik initialValues={
-                        {
+                    <Formik
+                        initialValues={{
                             username: '',
                             password: '',
-                            confirmPassword: '',
-                        }
-                    } onSubmit={(values) => {
-                        handleRegister(values).then()
-                    }
-                    }>
-                        <Form>
-                            <div className="ml-network">
-                                <div className="using-ml-account-text">
-                                    <span>Using Money Lover account</span>
-                                </div>
-                                <div className="form-input">
-                                    <Field className={'input'} type={'text'} name={'username'}
-                                           placeholder={" Email"}></Field>
-                                    <div style={{position: 'relative'}}> {}
-                                        <Field className={'input'} type={showPassword ? 'text' : 'password'}
-                                               name={'password'} placeholder={" Password"}/>
-                                        <span
-                                            className="eye-icon"
-                                            style={{
-                                                position: 'absolute',
-                                                top: '35%',
-                                                right: '10px',
-                                                transform: 'translateY(-50%)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={togglePasswordVisibility}
-                                        >
-                    {showPassword ? '👁️' : '👁️‍🗨️'}
-                </span>
+                            confirmPassword: ''
+                        }}
+                        validationSchema={validationSchema}
+                        onSubmit={(values) => {
+                            handleRegister(values).then();
+                        }}
+                    >
+                        {({errors, touched}) => (
+                            <Form>
+                                <div className="ml-network">
+                                    <div className="using-ml-account-text">
+                                        <span>Using Money Lover account</span>
                                     </div>
-                                    <div style={{position: 'relative'}}> {}
-                                        <Field className={'input'} type={showConfirmPassword ? 'text' : 'password'}
-                                               name={'confirmPassword'} placeholder={" ConfirmPassword"}/>
-                                        <span
-                                            className="eye-icon"
-                                            style={{
-                                                position: 'absolute',
-                                                top: '35%',
-                                                right: '10px',
-                                                transform: 'translateY(-50%)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={toggleConfirmPasswordVisibility}
-                                        >
-                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
-                </span>
+                                    <div className="form-input">
+                                        {errors.username && touched.username && (
+                                            <div className="error">{errors.username}</div>
+                                        )}
+                                        <Field className={'input'} type={'text'} name={'username'}
+                                               placeholder={"Email"}/>
+                                        <div style={{position: 'relative'}}>
+                                            {errors.password && touched.password && (
+                                                <div className="error">{errors.password}</div>
+                                            )}
+                                            <Field className={'input'} type={showPassword ? 'text' : 'password'}
+                                                   name={'password'} placeholder={"Password"}/>
+                                            <span
+                                                className="eye-icon"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '35%',
+                                                    right: '10px',
+                                                    transform: 'translateY(-50%)',
+                                                    cursor: 'pointer'
+                                                }}
+                                                onClick={togglePasswordVisibility}
+                                            >
+                                                {showPassword ? '👁️' : '👁️‍🗨️'}
+                                            </span>
+                                        </div>
+
+
+                                        <div style={{position: 'relative'}}>
+                                            {errors.confirmPassword && touched.confirmPassword && (
+                                                <div className="error">{errors.confirmPassword}</div>
+                                            )}
+                                            <Field className={'input'} type={showConfirmPassword ? 'text' : 'password'}
+                                                   name={'confirmPassword'} placeholder={"Confirm Password"}/>
+                                            <span
+                                                className="eye-icon"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '35%',
+                                                    right: '10px',
+                                                    transform: 'translateY(-50%)',
+                                                    cursor: 'pointer'
+                                                }}
+                                                onClick={toggleConfirmPasswordVisibility}
+                                            >
+                                                {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                                            </span>
+                                        </div>
+                                        <button className={'btn-form'} type={'submit'}>Register</button>
+                                        <p> Have you an account? <Link to={'/login'}>Login</Link></p>
                                     </div>
-                                    <button className={'btn-form'} type={'submit'}>Register</button>
-                                    <p> Have you an account? <Link to={'/login'}>Login</Link></p>
                                 </div>
-                            </div>
-                        </Form>
+                            </Form>
+                        )}
                     </Formik>
 
                 </div>

@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../../service/user/userService";
 import CustomToast from "../toas/CustomToast";
 import {getWallets} from "../../service/wallet/walletService";
+import * as Yup from "yup";
 
 
 export default function Login() {
@@ -16,6 +17,16 @@ export default function Login() {
     useEffect(() => {
         localStorage.removeItem('loginError');
     }, []);
+    const validationSchema = Yup.object().shape({
+        username: Yup.string()
+            .matches(/^[a-zA-Z0-9]+@gmail\.com$/, 'Invalid username format')
+            .required('Username is required'),
+        password: Yup.string()
+            .min(8, 'Invalid username format')
+            .matches(/^[^\s$!%*?&^]+$/, 'Invalid username format')
+            .required('Password is required'),
+    });
+
 
     const handleLogin = async (values) => {
         try {
@@ -103,41 +114,53 @@ export default function Login() {
                     <div className="ml-hr">
                         <hr/>
                     </div>
-                    <Formik initialValues={{
-                        username: '', password: '',
-                    }} onSubmit={(values) => {
-                        handleLogin(values).then()
-                    }}>
-                        <Form>
-                            <div className="ml-network">
-                                <div className="using-ml-account-text">
-                                    <span>Using Money Lover account</span>
-                                </div>
-                                <div className="form-input">
-                                    <Field className={'input'} type={'text'} name={'username'} placeholder={" Email"}/>
-                                    <div style={{position: 'relative'}}> {}
-                                        <Field className={'input'} type={showPassword ? 'text' : 'password'}
-                                               name={'password'} placeholder={" Password"}/>
-                                        <span
-                                            className="eye-icon"
-                                            style={{
-                                                position: 'absolute',
-                                                top: '35%',
-                                                right: '10px',
-                                                transform: 'translateY(-50%)',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={togglePasswordVisibility}
-                                        >
-                    {showPassword ? '👁️' : '👁️‍🗨️'}
-                </span>
+                    <Formik
+                        initialValues={{
+                            username: '',
+                            password: '',
+                        }}
+                        validationSchema={validationSchema}
+                        onSubmit={(values) => {
+                            handleLogin(values).then();
+                        }}
+                    >
+                        {({ errors, touched }) => (
+                            <Form>
+                                <div className="ml-network">
+                                    <div className="using-ml-account-text">
+                                        <span>Using Money Lover account</span>
                                     </div>
-                                    <Link to={"/edi"}>Forgot Password</Link>
-                                    <button className={'btn-form'} type={'submit'}>Login</button>
-                                    <p> Don’t have an account? <Link to={'register'}>Register</Link></p>
+                                    <div className="form-input">
+                                        {errors.username && touched.username && (
+                                            <div className="error">{errors.username}</div>
+                                        )}
+                                        <Field className={'input'} type={'text'} name={'username'} placeholder={" Email"} />
+                                        <div style={{ position: 'relative' }}>
+                                            {errors.password && touched.password && (
+                                                <div className="error">{errors.password}</div>
+                                            )}
+                                            <Field className={'input'} type={showPassword ? 'text' : 'password'} name={'password'} placeholder={" Password"} />
+                                            <span
+                                                className="eye-icon"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '35%',
+                                                    right: '10px',
+                                                    transform: 'translateY(-50%)',
+                                                    cursor: 'pointer'
+                                                }}
+                                                onClick={togglePasswordVisibility}
+                                            >
+                            {showPassword ? '👁️' : '👁️‍🗨️'}
+                        </span>
+                                        </div>
+                                        <Link to={"/edi"}>Forgot Password</Link>
+                                        <button className={'btn-form'} type={'submit'}>Login</button>
+                                        <p> Don’t have an account? <Link to={'register'}>Register</Link></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </Form>
+                            </Form>
+                        )}
                     </Formik>
                 </div>
             </div>

@@ -13,3 +13,20 @@ export const getUsers = createAsyncThunk(
         }
     }
 )
+export const createUsers = createAsyncThunk(
+    'users/createUsers',
+    async (values, { rejectWithValue }) => {
+        try {
+            const res = await axios.post(`http://localhost:8080/register`, values);
+            return res.data;
+        } catch (error) {
+            if (error.response && error.response.data === 'Username already exists') {
+                localStorage.setItem('registerError', 'Username already exists');
+                return rejectWithValue('Username already exists');
+            } else {
+                localStorage.setItem('registerError', JSON.stringify(error));
+                return rejectWithValue(error.message);
+            }
+        }
+    }
+);

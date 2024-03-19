@@ -1,7 +1,125 @@
-.container {
-    background-color: white;
+.container-create {
+    margin-top: 10vh;
     width: 40vw;
-    height: 60vh;
-    margin-top: 8vh;
+    background-color: white;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-top-content {
+    width: 100%;
+    height: 6vh;
+    background-color: #F4F4F4;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.title-name {
+    font-size: 18px;
+    flex-grow: 1; /* Expand to fill remaining space */
+    text-align: center;
+}
+
+.close {
+    width: 6vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.justify-content-center {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.form-input-create,
+.form-input-avatar {
+    width: calc(50% - 10px);
+}
+
+.input-create {
+    margin-bottom: 20px;
+}
+
+.input-create label {
+    font-weight: bold;
+}
+
+.input-textarea,
+.input-text {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-textarea:focus,
+.input-text:focus {
+    border-color: #2CB84C;
+}
+
+.input-textarea {
+    height: 100px;
+}
+
+.input-image {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-avatar-wallet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-avatar-wallet img {
+
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+.btn-submit-create {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-submit-create button {
+    padding: 10px 20px;
+    background-color: #2CB84C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit-create button:hover {
+    background-color: #238c3b;
+}
+
+.error-message {
+    color: red;
+    margin-top: 4px;
+    font-size: 14px;
 }

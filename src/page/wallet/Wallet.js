@@ -12,7 +12,7 @@ export default function Wallet() {
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
                     <div className="btn-show-form">
-                        Add Transactions
+                        Add Transaction
                     </div>
             </Link>
             {wallet && (

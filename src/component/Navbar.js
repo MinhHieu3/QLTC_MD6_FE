@@ -11,7 +11,7 @@ export default function Navbar() {
     const [isShow, setIsShow] = useState(false);
     const dispatch = useDispatch();
     const firstWallet = wallets[selectedWalletIndex];
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const handleClick = () => {
         setIsShow(!isShow);
     };
@@ -39,28 +39,31 @@ export default function Navbar() {
         <>
             <div className="lib-item-tab">
                 <div className="lib-item-tab-left" onClick={handleClick}>
-                    <div className="lib-item-tab-left-toolbar">
-                        <img
-                            data-v-48ecc7dc=""
-                            src="https://static.moneylover.me/img/icon/icon.png"
-                            onError="if (this.src != 'error.jpg') this.src = 'https://static.moneylover.me/img/icon/icon.png'"
-                            name="4"
-                            className="wallet-icon wallet-icon-all"
-                        />
-                    </div>
-                    <div className="content-wallet">
-                        {firstWallet && (
-                            <>
-                                <p>{firstWallet.name}
+                    {firstWallet && (
+                        <>
+                            <div className="lib-item-tab-left-toolbar">
+                                <img
+                                    src={firstWallet.avatar}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://static.moneylover.me/img/icon/icon.png'; }}
+                                    name="4"
+                                    className="wallet-icon"
+                                    alt=""
+
+                                />
+                            </div>
+                            <div className="content-wallet">
+                                <p>
+                                    {firstWallet.name}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path d="M7 10l5 5 5-5z"/>
                                     </svg>
                                 </p>
                                 <span>+{firstWallet.money} đ</span>
-                            </>
-                        )}
-                    </div>
+                            </div>
+                        </>
+                    )}
                 </div>
+
                 <div className="lib-item-tab-right">
                     <div className="icon-jumptoday">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +121,7 @@ export default function Navbar() {
                 {wallets.map((wallet, index) => (
                     <div key={wallet.id} className="included-from-total-wallet d-flex bd-highlight">
                         <div className="wallet-img p-2 bd-highlight">
-                            <img className="img-show-wallet" src="https://static.moneylover.me/img/icon/icon.png"
+                            <img className="img-show-wallet" src={wallet.avatar}
                                  alt=""/>
                         </div>
                         <div className="wallet-info p-2 flex-grow-1 bd-highlight" onClick={() => choiceWallet(index)}>
