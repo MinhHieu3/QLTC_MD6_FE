@@ -1,42 +1,77 @@
-/* Center text in small form text */
-.form-group small {
-    display: block;
-    text-align: center;
+.container-edit {
+    margin-top: 5vh;
+    width: 40vw;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.custom-form {
-    border: 1px solid #ccc; /* Màu và độ dày viền */
-    border-radius: 10px; /* Độ cong của góc */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bóng mờ */
-    padding: 20px; /* Khoảng cách nội dung từ viền */
-    max-width: 400px; /* Độ rộng tối đa của form */
-    margin: 0 auto; /* Đặt form vào giữa màn hình */
+.form-wrapper {
+    padding: 20px;
 }
 
-.add-container {
-    margin-top: 80px; /* Điều chỉnh cách lề trên */
+.form-group {
+    margin-bottom: 20px;
 }
 
-.success {
-    color: green;
+.form-group label {
+    font-weight: bold;
+    width: 30%; /* Độ rộng của nhãn */
+    margin-right: 10px; /* Khoảng cách giữa nhãn và input */
 }
 
-.error {
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 70%; /* Độ rộng của input */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #2CB84C;
+}
+
+.text-danger {
     color: red;
+    margin-top: 4px;
+    font-size: 14px;
 }
 
-.flex-container {
-    display: flex;
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.container {
-    margin-top: 50px; /* Điều chỉnh cách lề trên */
+.btn-primary {
+    background-color: #2CB84C;
+    color: #fff;
 }
 
-/* Customize input width */
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="number"],
-.form-group input[type="file"] {
-    width: calc(100% - 20px);
+.btn-secondary {
+    background-color: #ccc;
+    color: #000;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #238c3b;
+}
+
+.link-secondary {
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.link-secondary:hover {
+    text-decoration: underline;
+}
+.custom-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
