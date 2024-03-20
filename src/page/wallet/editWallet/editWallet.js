@@ -44,7 +44,7 @@ export default function EditWallet() {
                         {({ isSubmitting }) => (
                             <Form className={"custom-form"}>
                                 <div className="form-group">
-                                    <label htmlFor="descriptionInput">Description</label>
+                                    <label htmlFor="descriptionInput">Description </label>
                                     <Field
                                         type="text"
                                         name="description"
