@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
 
@@ -20,30 +21,32 @@ function Sidebar() {
                         </g>
                     </svg>
                 </div>
-                <a href="/home/profile">
+                <Link to={'/home/profile'}>
                     <div className="sidebar-icon-home" id={"myAccount"} >
                         <svg data-v-0698e127="" data-v-428a2930="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_account" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="#747474" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-428a2930="" d="M12,13.4285714 C8.84408714,13.4285714 6.28571429,10.8701986 6.28571429,7.71428571 C6.28571429,4.55837286 8.84408714,2 12,2 C15.1559129,2 17.7142857,4.55837286 17.7142857,7.71428571 C17.7142857,10.8701986 15.1559129,13.4285714 12,13.4285714 Z M21.3391667,17.682243 C21.6775,18.0293725 22,18.5100134 22,19.0111259 L22,22 L11.7408333,22 L2.00083333,22 L2.00083333,19.0111259 C2.00083333,18.5100134 2.095,18.0302626 2.435,17.682243 C3.90583333,16.1780151 7.4975,14.8571429 11.805,14.8571429 C16.1125,14.8571429 19.8658333,16.1789052 21.3391667,17.682243 Z" id="icon-with" data-v-0698e127=""></path></g></svg>
                     </div>
-                </a>
-
+                </Link>
                 <div className="sidebar-icon-home">
                     <svg data-v-0698e127="" data-v-428a2930="" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="ic_category_manager" version="1.1"><defs data-v-0698e127=""></defs> <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1" fill="#747474" fill-rule="evenodd"><rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect> <path data-v-0698e127="" d="M11.5,12.25 L6.75,10 L6.75,5.25 L11.5,7.5 L11.5,12.25 Z M12.5,12.25 L12.5,7.5 L17.25,5.25 L17.25,10 L12.5,12.25 Z M6.75,4 L12,1.5 L17.25,4 L12,6.5 L6.75,4 Z" id="Path-83"></path> <path data-v-0698e127="" d="M17.25,21.75 L12.5,19.5 L12.5,14.75 L17.25,17 L17.25,21.75 Z M18.25,21.75 L18.25,17 L23,14.75 L23,19.5 L18.25,21.75 Z M12.5,13.5 L17.75,11 L23,13.5 L17.75,16 L12.5,13.5 Z" id="Path-84"></path> <path data-v-0698e127="" d="M5.75,21.75 L1,19.5 L1,14.75 L5.75,17 L5.75,21.75 Z M6.75,21.75 L6.75,17 L11.5,14.75 L11.5,19.5 L6.75,21.75 Z M1,13.5 L6.25,11 L11.5,13.5 L6.25,16 L1,13.5 Z" id="Path-85"></path></g></svg>
                 </div>
-                <div className='sidebar-icon-home'>
-                    <svg data-v-0698e127="" data-v-9301d238="" xmlns="http://www.w3.org/2000/svg"
-                         xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"
-                         aria-labelledby="test" version="1.1">
-                        <defs data-v-0698e127=""></defs>
-                        <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1"
-                           fill="#BDBDBD" fill-rule="evenodd">
-                            <rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0"
-                                  width="24" height="24"></rect>
-                            <path data-v-9301d238=""
-                                  d="M21,18 L21,19 C21,20.105 20.105,21 19,21 L5,21 C3.895,21 3,20.105 3,19 L3,5 C3,3.895 3.895,3 5,3 L19,3 C20.105,3 21,3.895 21,5 L21,6 L12,6 C10.895,6 10,6.895 10,8 L10,16 C10,17.105 10.895,18 12,18 L21,18 L21,18 Z M12,16 L22,16 L22,8 L12,8 L12,16 L12,16 Z M16,13.5 C15.17,13.5 14.5,12.83 14.5,12 C14.5,11.17 15.17,10.5 16,10.5 C16.83,10.5 17.5,11.17 17.5,12 C17.5,12.83 16.83,13.5 16,13.5 L16,13.5 Z"
-                                  id="Shape" data-v-0698e127=""></path>
-                        </g>
-                    </svg>
-                </div>
+                <Link to={'/home/transferMoney'}>
+                    <div className='sidebar-icon-home'>
+                        <svg data-v-0698e127="" data-v-9301d238="" xmlns="http://www.w3.org/2000/svg"
+                             xmlns="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"
+                             aria-labelledby="test" version="1.1">
+                            <defs data-v-0698e127=""></defs>
+                            <g data-v-0698e127="" id="Icons/account/ic_account" stroke="none" stroke-width="1"
+                               fill="#BDBDBD" fill-rule="evenodd">
+                                <rect data-v-0698e127="" id="blue-background" fill-opacity="0" fill="#FFFFFF" x="0" y="0"
+                                      width="24" height="24"></rect>
+                                <path data-v-9301d238=""
+                                      d="M21,18 L21,19 C21,20.105 20.105,21 19,21 L5,21 C3.895,21 3,20.105 3,19 L3,5 C3,3.895 3.895,3 5,3 L19,3 C20.105,3 21,3.895 21,5 L21,6 L12,6 C10.895,6 10,6.895 10,8 L10,16 C10,17.105 10.895,18 12,18 L21,18 L21,18 Z M12,16 L22,16 L22,8 L12,8 L12,16 L12,16 Z M16,13.5 C15.17,13.5 14.5,12.83 14.5,12 C14.5,11.17 15.17,10.5 16,10.5 C16.83,10.5 17.5,11.17 17.5,12 C17.5,12.83 16.83,13.5 16,13.5 L16,13.5 Z"
+                                      id="Shape" data-v-0698e127=""></path>
+                            </g>
+                        </svg>
+                    </div>
+                </Link>
+
                 <hr/>
                 <div className='sidebar-icon-home'>
                     <svg data-v-0698e127="" data-v-9301d238="" xmlns="http://www.w3.org/2000/svg"

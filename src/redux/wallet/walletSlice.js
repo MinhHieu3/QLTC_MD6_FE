@@ -1,11 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
+
 import {
     addWallet,
     deleteWallet,
     editWallet,
     getIndexWallet,
     getWallets,
-    searchWallet
+    searchWallet, transferMoney
 } from "../../service/wallet/walletService";
 
 const initialState = {
@@ -40,6 +41,22 @@ const walletSlice = createSlice({
                 return wallet;
             });
         });
+        builder
+            .addCase(transferMoney.pending, (state) => {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(transferMoney.fulfilled, (state) => {
+                state.status = 'succeeded';
+            })
+            .addCase(transferMoney.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            });
+
+
+
     }
 })
+
 export default walletSlice.reducer

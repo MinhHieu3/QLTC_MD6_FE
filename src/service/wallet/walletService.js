@@ -43,8 +43,30 @@ export const searchWallet = createAsyncThunk(
     }
 )
 export const getIndexWallet=createAsyncThunk(
-    'wallét/getIndex',
+    'wallets/getIndex',
     async (index)=>{
         return index
     }
 )
+export const transferMoney = createAsyncThunk(
+    'wallets/transferMoney',
+    async ({ senderId, receiverId, amount }) => {
+        try {
+            const response = await axios.post("http://localhost:8080/users/wallets/transfer", {
+                senderId,
+                receiverId,
+                amount
+            });
+            return response.data;
+        } catch (error) {
+            throw new Error(error.response.data);
+        }
+    }
+);
+export const getWalletInfo = createAsyncThunk(
+    'wallet/getWalletInfo',
+    async (walletId) => {
+        const response = await axios.get(`http://localhost:8080/users/wallets/${walletId}`);
+        return response.data;
+    }
+);
