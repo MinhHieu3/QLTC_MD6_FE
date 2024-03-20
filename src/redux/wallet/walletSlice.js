@@ -1,5 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {addWallet, deleteWallet, getIndexWallet, getWallets, searchWallet} from "../../service/wallet/walletService";
+import {
+    addWallet,
+    deleteWallet,
+    editWallet,
+    getIndexWallet,
+    getWallets,
+    searchWallet
+} from "../../service/wallet/walletService";
 
 const initialState = {
     wallets: [],
@@ -25,6 +32,14 @@ const walletSlice = createSlice({
         builder.addCase(getIndexWallet.fulfilled, (state, action) => {
             state.index = action.payload
         })
+        builder.addCase(editWallet.fulfilled, (state, action) => {
+            state.wallets = state.wallets.map(wallet => {
+                if (wallet.id === action.payload.id) {
+                    return action.payload;
+                }
+                return wallet;
+            });
+        });
     }
 })
 export default walletSlice.reducer

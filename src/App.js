@@ -7,8 +7,9 @@ import Login from "./page/login/Login";
 import Register from "./page/login/Register";
 import Home from "./page/home/Home";
 import {useSelector} from "react-redux";
-import AddWallet from "./page/wallet/addWallet/AddWallet";
+import AddWallet from "./page/wallet/addWallet/addWallet";
 import Wallet from "./page/wallet/Wallet";
+import EditWallet from "./page/wallet/editWallet/editWallet";
 function App() {
     const users = useSelector(state => {
         return state.users.users
@@ -25,7 +26,7 @@ function App() {
                         <Route path={'home'} element={<Home/>}>
                             <Route path={''} element={<Wallet/>}></Route>
                             <Route path={'add-wallets'} element={<AddWallet/>}></Route>
-                        </Route> :
+                            <Route path={'edit-wallets/:id'} element={<EditWallet/>}></Route>                        </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
                 }
             </Routes>

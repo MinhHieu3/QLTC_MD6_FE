@@ -1,0 +1,42 @@
+/* Center text in small form text */
+.form-group small {
+    display: block;
+    text-align: center;
+}
+
+.custom-form {
+    border: 1px solid #ccc; /* Màu và độ dày viền */
+    border-radius: 10px; /* Độ cong của góc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bóng mờ */
+    padding: 20px; /* Khoảng cách nội dung từ viền */
+    max-width: 400px; /* Độ rộng tối đa của form */
+    margin: 0 auto; /* Đặt form vào giữa màn hình */
+}
+
+.add-container {
+    margin-top: 80px; /* Điều chỉnh cách lề trên */
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.container {
+    margin-top: 50px; /* Điều chỉnh cách lề trên */
+}
+
+/* Customize input width */
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    width: calc(100% - 20px);
+}
