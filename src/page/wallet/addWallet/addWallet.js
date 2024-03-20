@@ -17,7 +17,8 @@ export default function AddWallet() {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const [imageURL, setImageURL] = useState('https://firebasestorage.googleapis.com/v0/b/case-md6-68a8f.appspot.com/o/images%2F5987z5246087815947_fa57ab69e4a1ba4aeff67ee738276e49.jpg?alt=media&token=a7689751-f68f-4e72-a862-fc54ce7647c4');
+    let [imageURL, setImageURL] = useState('');
+    const imagDefault='https://firebasestorage.googleapis.com/v0/b/case-md6-68a8f.appspot.com/o/images%2F5987z5246087815947_fa57ab69e4a1ba4aeff67ee738276e49.jpg?alt=media&token=a7689751-f68f-4e72-a862-fc54ce7647c4'
     const navigate = useNavigate();
     const firebaseConfig = {
         apiKey: "AIzaSyDi3k1wLzdUDz_UPUeuKatQBGvdcuMjPrQ",
@@ -46,21 +47,40 @@ export default function AddWallet() {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    setImageURL(url);
+                    setImageURL(url)
                 });
             }
         );
     };
     const validationSchema = Yup.object().shape({
         name: Yup.string().matches(/^[\p{L}\s]+$/u, 'Name should only contain letters and spaces').required('Name is required'),
-        money: Yup.string().matches(/^\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?$/, 'Money format should be like 10,000 or 10,000.00').required('Money is required'),
+        money: Yup.string().matches(/^\d{1,3}(,\d{3})*$/, 'Money format should be like 10,000').required('Money is required'),
         description: Yup.string().max(200, 'Description must be at most 200 characters').required('Description is required')
     });
     const handleCreateWallet = async (values) => {
-        await dispatch(addWallet(values));
-        setTimeout(()=>{
-            navigate('/home')
-        },1000)
+        let moneyValue = values.money.replace(/\D/g, '');
+        moneyValue = parseFloat(moneyValue);
+
+        if (isNaN(moneyValue)) {
+            setErrorMessage('Invalid money format');
+            setShowToast(true);
+            return;
+        }
+        values.money = moneyValue;
+        if (imageURL === '') {
+            values.avatar = imagDefault;
+        } else {
+            values.avatar = imageURL;
+        }
+        try {
+            await dispatch(addWallet(values));
+            setTimeout(() => {
+                navigate('/home');
+            }, 1000);
+        } catch (error) {
+            setErrorMessage('Error adding wallet');
+            setShowToast(true);
+        }
     }
     return (
         <>
@@ -73,9 +93,7 @@ export default function AddWallet() {
 
                 <Formik
                     initialValues={{
-                        avatar: imageURL,
                         description: '',
-                        money: '',
                         name: '',
                         user: {
                             id: users.id
@@ -112,9 +130,10 @@ export default function AddWallet() {
 
                                 <div className="show-avatar-wallet">
                                     <img
-                                        src={imageURL}
+                                        src={imageURL !== '' ? imageURL : imagDefault}
                                         alt=""/>
                                 </div>
+
                                 <div className="input-image">
                                     <input
                                         type="file"

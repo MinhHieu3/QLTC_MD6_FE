@@ -1,19 +1,23 @@
 import "./Wallet.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import accounting from 'accounting';
 
 export default function Wallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const selectedWalletIndex = useSelector(state => state.wallets.index);
     const wallet = wallets[selectedWalletIndex];
     const total = wallet ? (wallet.money || 0) : 0;
+    const formatMoney = (amount) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    };
 
     return (
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
-                    <div className="btn-show-form">
-                        Add Transaction
-                    </div>
+                <div className="btn-show-form">
+                    Add Transaction
+                </div>
             </Link>
             {wallet && (
                 <div className="container-wallet">
@@ -35,10 +39,10 @@ export default function Wallet() {
                             <p>Outflow</p>
                         </div>
                         <div className="info-wallet">
-                            <p>+ {wallet.money} đ</p>
+                            <p>{formatMoney(wallet.money)}</p>
                             <p>0 đ</p>
                             <hr />
-                            <p>+{total} đ</p>
+                            <p>+ {formatMoney(total)}</p>
                         </div>
                     </div>
                 </div>

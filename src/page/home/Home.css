@@ -94,15 +94,13 @@
 
 .content-wallet p {
     margin-top: 1.5vh;
-    margin-bottom: 0;
+    margin-bottom: 0px;
     font-size: 13px;
     color: #A8A8A8
 
 }
 .content-wallet span{
-    margin-top: 0.5vh;
     font-size: 16px;
-    font-weight: bold;
 }
 
 .lib-item-tab-right {

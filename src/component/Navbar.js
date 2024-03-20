@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./Navbar.css";
-import {hydrateRoot} from "react-dom/client";
+import accounting from 'accounting';
 import {getIndexWallet} from "../service/wallet/walletService";
 import {useNavigate} from "react-router-dom";
 
@@ -12,6 +12,7 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const firstWallet = wallets[selectedWalletIndex];
     const navigate = useNavigate();
+
     const handleClick = () => {
         setIsShow(!isShow);
     };
@@ -34,6 +35,9 @@ export default function Navbar() {
             document.removeEventListener("click", handleOutsideClick);
         };
     }, []);
+    const formatMoney = (amount) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    };
 
     return (
         <>
@@ -58,7 +62,7 @@ export default function Navbar() {
                                         <path d="M7 10l5 5 5-5z"/>
                                     </svg>
                                 </p>
-                                <span>+{firstWallet.money} đ</span>
+                                <span>{formatMoney(firstWallet.money)}</span>
                             </div>
                         </>
                     )}
@@ -127,7 +131,7 @@ export default function Navbar() {
                         <div className="wallet-info p-2 flex-grow-1 bd-highlight" onClick={() => choiceWallet(index)}>
 
                             <span className="align-self-start input-wallet-info">{wallet.name}</span>
-                            <span className="align-self-start">+{wallet.money}đ</span>
+                            <span>{wallet.money && formatMoney(wallet.money)}</span>
                         </div>
                         <hr/>
                     </div>
