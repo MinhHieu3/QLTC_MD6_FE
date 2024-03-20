@@ -1,0 +1,127 @@
+.flex-container-account {
+    display: flex;
+    justify-content: center; /* căn giữa theo chiều ngang */
+    /*align-items: center; !* căn giữa theo chiều dọc *!*/
+    flex-direction: column;
+    background-color: white;
+    width: 40%;
+    margin: auto; /* sử dụng margin để căn giữa */
+    margin-top: 70px;
+}
+
+.main-text-wallets {
+    line-height: 75px;
+    font-size: 20px;
+    color: forestgreen;
+}
+
+.border-wallets {
+    border: 1px solid #ccc; /* Màu và độ dày viền */
+    border-radius: 5px; /* Độ cong của góc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Bóng mờ */
+    padding: 20px; /* Khoảng cách nội dung từ viền */
+}
+
+.border-title {
+    border-color: rgba(0, 0, 0, .12) !important;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 4px 0 0;
+    color: #fff;
+    position: relative;
+
+}
+
+.tittle-text {
+    background-color: #f1f1f1;
+    width: 50%;
+    color: black;
+    height: 60px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.hr {
+    width: 100%;
+}
+
+.main-account-top1 {
+    display: flex;
+    flex-direction: row;
+    max-height: 140px;
+    min-width: 400px;
+
+}
+
+.child-div {
+    padding: 20px 40px 20px 30px;
+}
+.img-profile-account {
+    width: 100px;
+    height: 100px;
+}
+.profile-account-center{
+    justify-content: center; /* căn giữa theo chiều ngang */
+    margin: auto;
+
+}
+
+.main-account-top3 {
+    margin: 20px;
+}
+
+.icon-container {
+    width: 50px; /* Điều chỉnh kích thước icon container theo mong muốn */
+    height: 50px; /* Điều chỉnh kích thước icon container theo mong muốn */
+    background-color: #f07700; /* Màu cam */
+    border-radius: 50%; /* Làm cho icon container trở thành hình tròn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.icon {
+    width: 30px; /* Điều chỉnh kích thước icon theo mong muốn */
+    height: 30px; /* Điều chỉnh kích thước icon theo mong muốn */
+    background-image: url('https://logodix.com/logo/1042163.png'); /* Thay link_to_windows_icon.png bằng đường dẫn đến biểu tượng Windows màu trắng của bạn */
+    background-size: cover;
+}
+
+.list-devices {
+    color: rgba(0, 0, 0, .54);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.title-account {
+    display: flex;
+
+}
+
+.close-title-account {
+    margin-left: auto;
+    margin-top: -10px;
+}
+
+.title-account-center {
+    width: 90%;
+    margin-left: 40%;
+    font-weight: 700;
+    font-size: 20px;
+}
+.text-devices{
+    line-height: 16px;
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+    margin-top: 5px;
+}
+.sing-out-account-btn{
+    margin: 10px;
+}
+.update-profile-table{
+    background-color: white;
+    width: 400px;
+    height:auto;
+}
