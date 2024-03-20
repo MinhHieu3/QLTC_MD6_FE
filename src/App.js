@@ -26,8 +26,7 @@ function App() {
                         <Route path={'home'} element={<Home/>}>
                             <Route path={''} element={<Wallet/>}></Route>
                             <Route path={'add-wallets'} element={<AddWallet/>}></Route>
-                            <Route path={'edit-wallets'} element={<EditWallet/>}></Route>
-                        </Route> :
+                            <Route path={'edit-wallets/:id'} element={<EditWallet/>}></Route>                        </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
                 }
             </Routes>

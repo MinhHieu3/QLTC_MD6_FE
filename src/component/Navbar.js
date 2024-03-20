@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "./Navbar.css";
 import accounting from 'accounting';
 import {getIndexWallet} from "../service/wallet/walletService";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Navbar() {
     const wallets = useSelector(state => state.wallets.wallets);
@@ -135,7 +135,9 @@ export default function Navbar() {
 
                             <span className="align-self-start input-wallet-info">{wallet.name}</span>
                             <span>{wallet.money && formatMoney(wallet.money)}</span>
-                            <button></button>
+                        </div>
+                        <div className="btn-edit-wallet">
+                            <Link to={`/home/edit-wallets/${wallet.id}`}>Edit</Link>
                         </div>
                         <hr/>
                     </div>

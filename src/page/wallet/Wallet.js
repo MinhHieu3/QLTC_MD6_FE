@@ -45,6 +45,11 @@ export default function Wallet() {
                             <p>+ {formatMoney(total)}</p>
                         </div>
                     </div>
+                    <Link to={'transfer-wallets'} className={'nav-transfer-wallet'}>
+                        <div className="btn-show-transfer-form">
+                            Transfer Wallet
+                        </div>
+                    </Link>
                 </div>
             )}
         </>
