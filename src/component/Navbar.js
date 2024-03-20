@@ -63,7 +63,10 @@ export default function Navbar() {
                                     </svg>
                                 </p>
                                 <span>{formatMoney(firstWallet.money)}</span>
+
+
                             </div>
+
                         </>
                     )}
                 </div>
@@ -132,6 +135,7 @@ export default function Navbar() {
 
                             <span className="align-self-start input-wallet-info">{wallet.name}</span>
                             <span>{wallet.money && formatMoney(wallet.money)}</span>
+                            <button></button>
                         </div>
                         <hr/>
                     </div>

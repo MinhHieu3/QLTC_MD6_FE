@@ -13,6 +13,13 @@ export const getUsers = createAsyncThunk(
         }
     }
 )
+export const findById = createAsyncThunk(
+    'users/findById',
+    async (id, { rejectWithValue }) => {
+            const res = await axios.get(`http://localhost:8080/users`+id);
+            return res;
+    }
+)
 export const createUsers = createAsyncThunk(
     'users/createUsers',
     async (values, { rejectWithValue }) => {
