@@ -36,6 +36,13 @@ export const addWallet = createAsyncThunk(
         return res.data
     }
 )
+export const findByIdWallet = createAsyncThunk(
+    'wallets/findByIdWallet',
+    async (idWallet) => {
+        const res = await axios.get('http://localhost:8080/users/wallets/'+idWallet+'/findByIdWallet')
+        return res.data
+    }
+)
 export const searchWallet = createAsyncThunk(
     'wallets/searchWallet',
     async (data) => {

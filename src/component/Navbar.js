@@ -36,7 +36,7 @@ export default function Navbar() {
         };
     }, []);
     const formatMoney = (amount) => {
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
 
     return (
@@ -48,7 +48,10 @@ export default function Navbar() {
                             <div className="lib-item-tab-left-toolbar">
                                 <img
                                     src={firstWallet.avatar}
-                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://static.moneylover.me/img/icon/icon.png'; }}
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = 'https://static.moneylover.me/img/icon/icon.png';
+                                    }}
                                     name="4"
                                     className="wallet-icon"
                                     alt=""
@@ -126,22 +129,24 @@ export default function Navbar() {
             <div className={`form-sidebar ${isShow ? 'show' : ''}`}>
                 <div className="included-from-total-title">Excluded from Total</div>
                 {wallets.map((wallet, index) => (
-                    <div key={wallet.id} className="included-from-total-wallet d-flex bd-highlight">
-                        <div className="wallet-img p-2 bd-highlight">
-                            <img className="img-show-wallet" src={wallet.avatar}
-                                 alt=""/>
-                        </div>
-                        <div className="wallet-info p-2 flex-grow-1 bd-highlight" onClick={() => choiceWallet(index)}>
-
-                            <span className="align-self-start input-wallet-info">{wallet.name}</span>
-                            <span>{wallet.money && formatMoney(wallet.money)}</span>
+                    <div key={wallet.id} className="included-from-total-wallet">
+                        <div className="bd-highlight">
+                            <div className="wallet-img p-2">
+                                <img className="img-show-wallet" src={wallet.avatar} alt=""/>
+                            </div>
+                            <div className="wallet-info p-2 flex-grow-1" onClick={() => choiceWallet(index)}>
+                                <span className="align-self-start input-wallet-info">{wallet.name}</span>
+                                <span>{wallet.money && formatMoney(wallet.money)}</span>
+                            </div>
                         </div>
                         <div className="btn-edit-wallet">
                             <Link to={`/home/edit-wallets/${wallet.id}`}>Edit</Link>
                         </div>
                         <hr/>
                     </div>
+
                 ))}
+
             </div>
         </>
     )

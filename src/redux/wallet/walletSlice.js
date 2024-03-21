@@ -1,18 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit";
-
+import { createSlice } from "@reduxjs/toolkit";
 import {
     addWallet,
     deleteWallet,
     editWallet,
+    findByIdWallet,
     getIndexWallet,
     getWallets,
-    searchWallet, transferMoney
+    searchWallet,
+    transferMoney
 } from "../../service/wallet/walletService";
-
 const initialState = {
     wallets: [],
+    findByIdWallet: [],
     search: '',
-    index:0,
+    index: 0,
 }
 const walletSlice = createSlice({
     name: 'wallets',
@@ -22,7 +23,7 @@ const walletSlice = createSlice({
             state.wallets = action.payload
         })
         builder.addCase(deleteWallet.fulfilled, (state, action) => {
-            state.wallets = state.wallets.filter(wallets => wallets.id !== action.payload)
+            state.wallets = state.wallets.filter(wallet => wallet.id !== action.payload)
         })
         builder.addCase(addWallet.fulfilled, (state, action) => {
             state.wallets.push(action.payload)
@@ -32,6 +33,9 @@ const walletSlice = createSlice({
         })
         builder.addCase(getIndexWallet.fulfilled, (state, action) => {
             state.index = action.payload
+        })
+        builder.addCase(findByIdWallet.fulfilled, (state, action) => {
+            state.findByIdWallet = action.payload
         })
         builder.addCase(editWallet.fulfilled, (state, action) => {
             state.wallets = state.wallets.map(wallet => {
@@ -53,10 +57,7 @@ const walletSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.error.message;
             });
-
-
-
     }
 })
 
-export default walletSlice.reducer
+export default walletSlice.reducer;
