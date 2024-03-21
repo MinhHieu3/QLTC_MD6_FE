@@ -136,9 +136,6 @@ export default function Navbar() {
                             <span className="align-self-start input-wallet-info">{wallet.name}</span>
                             <span>{wallet.money && formatMoney(wallet.money)}</span>
                         </div>
-                        <div className="btn-edit-wallet">
-                            <Link to={`/home/edit-wallets/${wallet.id}`}>Edit</Link>
-                        </div>
                         <hr/>
                     </div>
                 ))}
