@@ -11,7 +11,8 @@ import AddWallet from "./page/wallet/addWallet/AddWallet";
 import Wallet from "./page/wallet/Wallet";
 import {Profiler} from "react";
 import Account from "./page/account/Account";
-
+import EditWallet from "./page/wallet/editWallet/editWallet";
+import TransferMoney from "./page/wallet/ transfers/TransferMoney";
 function App() {
     const users = useSelector(state => {
         return state.users.users
@@ -28,7 +29,9 @@ function App() {
                         <Route path={'home'} element={<Home/>}>
                             <Route path={''} element={<Wallet/>}></Route>
                             <Route path={'add-wallets'} element={<AddWallet/>}></Route>
+                            <Route path={'edit-wallets/:id'} element={<EditWallet/>}></Route>
                             <Route path={'profile'} element={<Account/>}></Route>
+                            <Route path={'transferMoney'} element={<TransferMoney/>}></Route>
                         </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
                 }
