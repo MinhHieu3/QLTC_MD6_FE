@@ -2,6 +2,7 @@ import "./Wallet.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import accounting from 'accounting';
+import TransferMoney from "./ transfers/TransferMoney";
 
 export default function Wallet() {
     const wallets = useSelector(state => state.wallets.wallets);
@@ -45,11 +46,6 @@ export default function Wallet() {
                             <p>+ {formatMoney(total)}</p>
                         </div>
                     </div>
-                    <Link to={'transfer-wallets'} className={'nav-transfer-wallet'}>
-                        <div className="btn-show-transfer-form">
-                            Transfer Wallet
-                        </div>
-                    </Link>
                 </div>
             )}
         </>

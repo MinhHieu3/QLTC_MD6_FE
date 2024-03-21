@@ -55,8 +55,6 @@
 .btn-secondary {
     background-color: #ccc;
     color: #000;
-<<<<<<< HEAD
-=======
 }
 
 .btn-primary:hover, .btn-secondary:hover {
@@ -76,7 +74,6 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
->>>>>>> features/crud-wallet
 }
 
 .btn-primary:hover, .btn-secondary:hover {
