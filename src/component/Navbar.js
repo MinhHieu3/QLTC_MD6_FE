@@ -12,7 +12,6 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const firstWallet = wallets[selectedWalletIndex];
     const navigate = useNavigate();
-
     const handleClick = () => {
         setIsShow(!isShow);
     };
@@ -20,7 +19,6 @@ export default function Navbar() {
     const choiceWallet = (index) => {
         dispatch(getIndexWallet(index));
         navigate('/home')
-
     };
 
     const handleOutsideClick = (event) => {
@@ -38,6 +36,12 @@ export default function Navbar() {
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
+    const handleChoiceEdit=(indexEdit)=>{
+        dispatch(getIndexWallet(indexEdit));
+        setTimeout(()=>{
+            navigate('edit-wallets')
+        })
+    }
 
     return (
         <>
@@ -139,8 +143,8 @@ export default function Navbar() {
                                 <span>{wallet.money && formatMoney(wallet.money)}</span>
                             </div>
                         </div>
-                        <div className="btn-edit-wallet">
-                            <Link to={`/home/edit-wallets/${wallet.id}`}>Edit</Link>
+                        <div className="btn-edit-wallet" onClick={()=>handleChoiceEdit(index)}>
+                            Edit
                         </div>
                         <hr/>
                     </div>
