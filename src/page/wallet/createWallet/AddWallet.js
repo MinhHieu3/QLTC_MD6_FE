@@ -127,7 +127,6 @@ export default function AddWallet() {
                                 </div>
                             </div>
                             <div className="form-input-avatar">
-
                                 <div className="show-avatar-wallet">
                                     <img
                                         src={imageURL !== '' ? imageURL : imagDefault}

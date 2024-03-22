@@ -10,6 +10,9 @@ export default function ListWallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const formatMoney = (amount) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    };
     const handleDeleteWallet = (id) => {
         dispatch(deleteWallet(id))
             .then(() => {
@@ -42,7 +45,7 @@ export default function ListWallet() {
                             </div>
                             <div className="profile-myWallet-center">
                                 <div>Name: {wallet.name}</div>
-                                <div>Money: {wallet.money}</div>
+                                <div>Money: {formatMoney(wallet.money)}</div>
                                 <div>Description: {wallet.description}</div>
                             </div>
                             <div className="btn-myWallet">

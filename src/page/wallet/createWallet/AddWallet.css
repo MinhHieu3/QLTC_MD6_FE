@@ -17,13 +17,13 @@
 }
 
 .title-name {
-    font-size: 18px;
+    font-size: 95%;
     flex-grow: 1;
     text-align: center;
 }
 
 .close {
-    width: 6vw;
+    width: 5%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -41,16 +41,18 @@
 .form-group-edit-account {
     margin-top: 5px;
     align-items: flex-start;
+<<<<<<< HEAD
+=======
+    padding: 20px;
+>>>>>>> 4969beb6dad749aa629bfe71d300af1d500057dc
 }
  .form-group img{
     border-radius: 50px;
 }
 
-.form-input-create,
-.form-input-avatar {
-    width: calc(50% - 10px);
+.form-input-avatar{
+    margin-left: 15px;
 }
-
 .input-create {
     margin-bottom: 20px;
 }

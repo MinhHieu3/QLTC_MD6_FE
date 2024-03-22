@@ -1,8 +1,7 @@
 import "./Wallet.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import accounting from 'accounting';
-import TransferMoney from "./ transfers/TransferMoney";
+
 
 export default function Wallet() {
     const wallets = useSelector(state => state.wallets.wallets);
