@@ -38,11 +38,10 @@
     width: 100%;
 }
 
-.form-group {
-    display: flex;
+.form-group-edit-account {
+    margin-top: 5px;
     align-items: flex-start;
-    padding: 20px;
-}f
+}
  .form-group img{
     border-radius: 50px;
 }
