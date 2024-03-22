@@ -203,3 +203,7 @@
 .close-show-if:hover{
     cursor: pointer;
 }
+.btn-account{
+    display: flex;
+    justify-content: end;
+}
