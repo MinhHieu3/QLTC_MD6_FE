@@ -65,7 +65,7 @@ export default function EditWallet() {
                                 <div className="form-group">
                                     <label htmlFor="avatarInput">Avatar</label>
                                     {imageURL && (
-                                        <img src={imageURL} alt="Avatar Preview" style={{maxWidth: "120px", borderRadius: "50%" }} />
+                                        <img src={imageURL} alt="Avatar Preview" />
                                     )}
                                 </div>
 
