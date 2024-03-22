@@ -89,7 +89,7 @@ export default function EditWallet() {
                             {({isSubmitting}) => (
                                 <Form className={"custom-form-edit"}>
                                     <div className="div-button-back">
-                                        <div className="div-btn-err"></div>
+                                        <div className="div-btn-err">Edit Wallet</div>
                                         <div className="div-btn-back">
                                             <Link to="/home/profile-wallets" style={{color: "black"}}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

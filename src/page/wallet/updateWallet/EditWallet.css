@@ -114,10 +114,16 @@
 .div-button-back {
     display: flex;
     justify-content: end;
+
 }
 
-.div-btn-err {
+.div-btn-err{
+    font-weight: bold;
+    color: black;
     width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .div-btn-back {
