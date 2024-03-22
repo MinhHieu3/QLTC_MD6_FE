@@ -1,0 +1,82 @@
+.flex-container-account-wallet{
+    width: 40vw;
+    height: 68vh;
+    margin-top: 10vh;
+    border-radius: 8px;
+    background-color: white;
+
+}
+.title-nav-wallet{
+    width: 40vw;
+    height: 6vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background-color: #F4F4F4;
+}
+.title-nav-center{
+    width: 37vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clone-myWallet{
+    width: 2vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.profile-myWallet{
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+.main-myWallet-top1{
+    width: 40vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3vh;
+    margin-right: 2vh;
+
+
+}
+.img-myWallet{
+    width: 5vw;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-myWallet img{
+   border-radius: 50px;
+    width: 3vw;
+    height: 5.6vh;
+}
+.profile-myWallet-center{
+    width: 18vw;
+    height: 9vh;
+    display: flex;
+    margin-left: 2vh;
+    flex-direction: column;
+}
+.btn-myWallet{
+    width: 4vw;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-myWallet a{
+    text-decoration: none;
+    color: #A8A8A8;
+}.btn-myWallet a:hover{
+    color: #2CB84C;
+}

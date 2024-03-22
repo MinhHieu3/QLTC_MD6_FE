@@ -61,31 +61,34 @@ export default function TransferMoney() {
                     validationSchema={validationSchema}
                     onSubmit={handleTransferMoney}
                 >
-                    <Form className="justify-content-center">
-                        <div className="form-group">
-                            <div className="form-input-create">
-                                <div className="input-create">
-                                    <label>Sender ID : </label>
-                                    <Field className="input-text" type={"text"} name={'senderId'}/>
-                                    <ErrorMessage name="senderId" component="div" className="error-message"/>
-                                </div>
-                                <div className="input-create">
-                                    <label>Receiver ID :</label>
-                                    <Field className="input-text" type={"text"} name={'receiverId'}/>
-                                    <ErrorMessage name="receiverId" component="div" className="error-message"/>
-                                </div>
-                                <div className="input-create">
-                                    <label>Amount :</label>
-                                    <Field className="input-text" type={"text"} name={'amount'}/>
-                                    <ErrorMessage name="amount" component="div" className="error-message"/>
+                    {({ handleSubmit }) => (
+                        <Form className="justify-content-center">
+                            <div className="form-group">
+                                <div className="form-input-create">
+                                    <div className="input-create">
+                                        <label>Sender ID : </label>
+                                        <Field className="input-text" type="text" name="senderId" />
+                                        <ErrorMessage name="senderId" component="div" className="error-message" />
+                                    </div>
+                                    <div className="input-create">
+                                        <label>Receiver ID :</label>
+                                        <Field className="input-text" type="text" name="receiverId" />
+                                        <ErrorMessage name="receiverId" component="div" className="error-message" />
+                                    </div>
+                                    <div className="input-create">
+                                        <label>Amount :</label>
+                                        <Field className="input-text" type="text" name="amount" />
+                                        <ErrorMessage name="amount" component="div" className="error-message" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="btn-submit-create">
-                            <button type="submit">Transfer Money</button>
-                        </div>
-                    </Form>
+                            <div className="btn-submit-create">
+                                <button type="submit" onClick={handleSubmit}>Transfer Money</button>
+                            </div>
+                        </Form>
+                    )}
                 </Formik>
+
             </div>
         </>
     );

@@ -62,7 +62,7 @@
     height: 100px;
 }
 .profile-account-center{
-    justify-content: center; /* căn giữa theo chiều ngang */
+    justify-content: center;
     margin: auto;
 
 }

@@ -9,15 +9,15 @@
 .form-wrapper {
     padding: 20px;
 }
-
-.form-group {
-    margin-bottom: 20px;
-}
-
 .form-group label {
     font-weight: bold;
     width: 30%;
     margin-right: 10px;
+}
+.form-group img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
 
 .form-control {
@@ -69,31 +69,46 @@
 .link-secondary:hover {
     text-decoration: underline;
 }
-.custom-form {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
 
-.btn-primary:hover, .btn-secondary:hover {
-    background-color: #238c3b;
-}
-
-.link-secondary {
-    color: #A8A8A8;
-    text-decoration: none;
-}
-
-.link-secondary:hover {
-    text-decoration: underline;
-}
 .custom-form {
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color: whitesmoke;
+    margin-top: 70px;
 }
 
+.input-image {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.show-avatar-wallet-edit img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+.div-button-back{
+    display: flex;
+    justify-content: end;
+}
+
+.div-btn-err{
+    width: 90%;
+}
+.div-btn-back {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    transition: background-color 0.3s;
+}
+
+.div-btn-back:hover {
+    background-color: #8d8d8d;
+    cursor: pointer;
+    border-radius: 20px;
+}
 

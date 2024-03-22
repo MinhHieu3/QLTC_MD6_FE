@@ -72,21 +72,13 @@
     height: 9vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     background: white;
     border-bottom: 1px solid #ececec;
     border-top: 1px solid #ececec;
 }
-
-.bd-highlight {
-    display: flex;
-    justify-content: center;
-    width: 15vw;
-    height: 9vh;
-}
-
-.bd-highlight:hover {
+.included-from-total-wallet:hover {
     background-color: #F5F5F5;
-    cursor: pointer;
 }
 
 .img-show-wallet {

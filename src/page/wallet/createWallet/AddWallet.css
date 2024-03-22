@@ -40,9 +40,11 @@
 
 .form-group {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
+}f
+ .form-group img{
+    border-radius: 50px;
 }
 
 .form-input-create,
