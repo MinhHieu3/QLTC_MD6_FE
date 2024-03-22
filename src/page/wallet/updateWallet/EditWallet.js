@@ -1,33 +1,22 @@
-<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
-import React, { useState } from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-=======
-import React, {useEffect} from "react";
-import {ErrorMessage, Field, Form, Formik} from "formik";
->>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
+
 import * as Yup from "yup";
 import {Link, useParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {editWallet, findByIdWallet} from "../../../service/wallet/walletService";
 import "./EditWallet.css";
+import {useEffect, useState} from "react";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 
 export default function EditWallet() {
     const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
     const wallets = useSelector(state => state.wallets.wallets);
     const wallet = wallets.find(wallet => wallet.id === parseInt(id));
     const [imageURL, setImageURL] = useState(wallet?.avatar || '');
-=======
-    const wallets = useSelector(state => {
-        console.log(state.wallets.findByIdWallet)
-        return state.wallets.findByIdWallet
-    });
     useEffect(() => {
         dispatch(findByIdWallet(id));
     }, [dispatch, id]);
->>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().matches(/^[\p{L}\s]+$/u, 'Name should only contain letters and spaces').required('Name is required'),
@@ -37,13 +26,9 @@ export default function EditWallet() {
 
     const handleSubmit = async (values, actions) => {
         try {
-<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
-            // Dispatch editWallet action with id and updated data
             await dispatch(editWallet({ id, data: { ...values, avatar: imageURL } }));
             console.log("Wallet updated successfully:", values);
-=======
             await dispatch(editWallet({id, data: values}));
->>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
             navigate("/home");
         } catch (error) {
         }
@@ -65,13 +50,7 @@ export default function EditWallet() {
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <Formik
-<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
                         initialValues={wallet}
-=======
-                        initialValues={
-                            wallets
-                        }
->>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
                         validationSchema={validationSchema}
                         onSubmit={(values) => handleSubmit(values)}
                     >
@@ -144,13 +123,6 @@ export default function EditWallet() {
                                 >
                                     Submit
                                 </button>
-                                <button
-                                    className="btn btn-secondary"
-                                    style={{marginTop: "20px"}}
-                                >
-                                    {/*<Link to={"/home"}>Back</Link>*/}
-                                </button>
-
                             </Form>
                         )}
                     </Formik>

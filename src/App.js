@@ -13,6 +13,7 @@ import {Profiler} from "react";
 import Account from "./page/account/Account";
 import EditWallet from "./page/wallet/updateWallet/EditWallet";
 import TransferMoney from "./page/wallet/ transfers/TransferMoney";
+import ListWallet from "./page/wallet/listWallets/ListWallet";
 function App() {
     const users = useSelector(state => {
         return state.users.users
