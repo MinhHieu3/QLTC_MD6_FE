@@ -80,3 +80,51 @@
 }.btn-myWallet a:hover{
     color: #2CB84C;
 }
+.btn-myWallet.pay{
+    color: #A8A8A8;
+    cursor: pointer;
+}
+.btn-myWallet.pay:hover{
+    color: #2CB84C;
+}
+.outer {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.border-payment {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 50px;
+    margin-right: 260px;
+    margin-left: 80vw;
+    position: absolute;
+    left: -90px;
+    top: 180px;
+
+}
+.input-hidden {
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.textarea-height{
+    max-height: 100px;
+}
+.close-payment{
+    display: flex;
+    justify-content: end;
+    margin: -8px -10px 0 0;
+}
+.close-payment:hover{
+    cursor: pointer;
+}
+.show-form-payment{
+    display: flex;
+    justify-content: end;
+}
