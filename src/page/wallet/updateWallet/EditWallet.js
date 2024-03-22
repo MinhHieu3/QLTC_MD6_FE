@@ -7,16 +7,11 @@ import {editWallet, findByIdWallet} from "../../../service/wallet/walletService"
 import "./EditWallet.css";
 
 export default function EditWallet() {
-    const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const wallets = useSelector(state => {
-        console.log(state.wallets.findByIdWallet)
-        return state.wallets.findByIdWallet
-    });
-    useEffect(() => {
-        dispatch(findByIdWallet(id));
-    }, [dispatch, id]);
+    const wallets = useSelector(state => state.wallets.wallets);
+    const selectedWalletIndex = useSelector(state => state.wallets.index);
+    const wallet = wallets[selectedWalletIndex];
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().matches(/^[\p{L}\s]+$/u, 'Name should only contain letters and spaces').required('Name is required'),
@@ -26,7 +21,7 @@ export default function EditWallet() {
 
     const handleSubmit = async (values, actions) => {
         try {
-            await dispatch(editWallet({id, data: values}));
+            await dispatch(editWallet({id:wallet.id, data: values}));
             navigate("/home");
         } catch (error) {
         }
@@ -38,7 +33,7 @@ export default function EditWallet() {
                 <div className="col-md-6">
                     <Formik
                         initialValues={
-                            wallets
+                            wallet
                         }
                         validationSchema={validationSchema}
                         onSubmit={(values) => handleSubmit(values)}
