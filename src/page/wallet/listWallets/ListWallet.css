@@ -80,3 +80,51 @@
 }.btn-myWallet a:hover{
     color: #2CB84C;
 }
+.btn-myWallet.pay{
+    color: #A8A8A8;
+    cursor: pointer;
+}
+.btn-myWallet.pay:hover{
+    color: #2CB84C;
+}
+.outer {
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /*color: rgb(191, 210, 210);*/
+
+}
+
+.border-payment {
+    background-color: white;
+    border: 1px solid #A8A8A8; /* Màu và độ dày viền */
+    border-radius: 5px; /* Độ cong của góc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Bóng mờ */
+    padding: 20px; /* Khoảng cách nội dung từ viền */
+    margin-top: 50px;
+    max-width: 260px;
+    max-height: 550px;
+}
+.input-hidden {
+    width: 150px; /* Điều chỉnh kích thước phù hợp */
+    overflow: hidden;
+    white-space: nowrap; /* Ngăn chữ tràn dòng */
+    text-overflow: ellipsis; /* Sử dụng dấu ba chấm để biểu thị chữ bị cắt */
+}
+.textarea-height{
+    max-height: 100px;
+}
+.close-payment{
+    display: flex;
+    justify-content: end;
+    margin: -8px -10px 0 0;
+}
+.close-payment:hover{
+    cursor: pointer;
+}
+.show-form-payment{
+    display: flex;
+    justify-content: end;
+
+}
