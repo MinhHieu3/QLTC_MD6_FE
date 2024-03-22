@@ -54,9 +54,8 @@ export default function ListWallet() {
                                 <Link to={`/home/edit-wallets/${wallet.id}`}>
                                     <button className="btn btn-secondary">Edit</button>
                                 </Link>
-                                <button className="btn btn-secondary">Transfer</button>
-                                <button className={'btn btn-danger'} onClick={() => handleDeleteWallet(wallet.id)}>Xóa</button>
-
+                                {/*<button className="btn btn-secondary">Transfer</button>*/}
+                                <button className={'btn btn-danger'} onClick={() => handleDeleteWallet(wallet.id)}>Delete</button>
                             </div>
                         </div>
                     </div>
