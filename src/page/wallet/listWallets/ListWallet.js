@@ -13,8 +13,10 @@ export default function ListWallet() {
     const [showPayment, setShowPayment] = useState(false);
     const [selectedFruit, setSelectedFruit] = useState('Select any fruit');
     const [isShow, setIsShow] = useState(false);
-
+    const [selectedWalletIndex, setSelectedWalletIndex] = useState(null);
+    let wallet = wallets[selectedWalletIndex];
     const handleSelectChange = (e) => {
+
         setSelectedFruit(e.target.value);
     };
     const formatMoney = (amount) => {
@@ -32,8 +34,13 @@ export default function ListWallet() {
             });
     };
 
-    const handlePaymentButtonClick = () => {
-        setShowPayment(!showPayment);
+    const handlePaymentButtonClick = (index) => {
+        if (selectedWalletIndex === index) {
+            setShowPayment(!showPayment);
+        } else {
+            setSelectedWalletIndex(index);
+            setShowPayment(true);
+        }
     };
 
     return (
@@ -47,7 +54,7 @@ export default function ListWallet() {
                     </div>
                 </div>
                 <div className="profile-myWallet">
-                    {wallets.map(wallet => (
+                    {wallets.map((wallet,index) => (
                         <>
                             <hr/>
                             <div className="main-myWallet-top1">
@@ -65,7 +72,7 @@ export default function ListWallet() {
                                 <div className="btn-myWallet">
                                     <Link to={`/home/edit-wallets/${wallet.id}`}>Edit</Link>
                                 </div>
-                                <div className="btn-myWallet pay" onClick={handlePaymentButtonClick}>Payment</div>
+                                <div className="btn-myWallet pay" onClick={() => handlePaymentButtonClick(index)}>Payment</div>
                                 <div className="btn-myWallet">
                                     <Link to={`/home/edit-wallets/${wallet.id}`}>Del</Link>
                                 </div>
@@ -77,7 +84,7 @@ export default function ListWallet() {
             {showPayment && (
                 <div className={"border-payment"}>
                     <div>
-                        <div className={"close-payment show-form-payment"} onClick={()=>{
+                        <div className={"close-payment show-form-payment"} onClick={() => {
                             setShowPayment(false);
                         }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -103,13 +110,13 @@ export default function ListWallet() {
                             <h6>Source account</h6>
                             <div style={{display: "flex"}}>
                                 <div style={{marginLeft: 10, marginTop: 8}}><img
-                                    style={{height: 40, width: 40, marginRight: 10}}
-                                    src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+                                    style={{borderRadius:50,height: 40, width: 40, marginRight: 10}}
+                                    src={wallet.avatar}
                                     alt=""/>
                                 </div>
                                 <div className={"input-hidden"} style={{margin: "auto"}}>
-                                    <div style={{fontSize: 19}}>Name</div>
-                                    <div style={{fontSize: 16}}>Money Money</div>
+                                    <div style={{fontSize: 19}}>{wallet.name}</div>
+                                    <div style={{fontSize: 16}}>{formatMoney(wallet.money)}</div>
                                 </div>
                             </div>
                         </div>
