@@ -13,11 +13,14 @@
     font-weight: bold;
     width: 30%;
     margin-right: 10px;
+<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.css
 }
 .form-group img{
     width: 150px;
     height: 150px;
     border-radius: 50%;
+=======
+>>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.css
 }
 
 .form-control {

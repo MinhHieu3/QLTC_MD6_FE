@@ -1,33 +1,51 @@
+<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+=======
+import React, {useEffect} from "react";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+>>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
 import * as Yup from "yup";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { editWallet } from "../../../service/wallet/walletService";
-import "./editWallet.css";
+import {Link, useParams, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {editWallet, findByIdWallet} from "../../../service/wallet/walletService";
+import "./EditWallet.css";
 
 export default function EditWallet() {
-    const { id } = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
     const wallets = useSelector(state => state.wallets.wallets);
     const wallet = wallets.find(wallet => wallet.id === parseInt(id));
     const [imageURL, setImageURL] = useState(wallet?.avatar || '');
+=======
+    const wallets = useSelector(state => {
+        console.log(state.wallets.findByIdWallet)
+        return state.wallets.findByIdWallet
+    });
+    useEffect(() => {
+        dispatch(findByIdWallet(id));
+    }, [dispatch, id]);
+>>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
 
     const validationSchema = Yup.object().shape({
-        description: Yup.string().required("Description is required"),
-        money: Yup.number().required("Money is required"),
-        name: Yup.string().required("Name is required"),
+        name: Yup.string().matches(/^[\p{L}\s]+$/u, 'Name should only contain letters and spaces').required('Name is required'),
+        money: Yup.string().matches(/^\d{1,3}(,\d{3})*$/, 'Money format should be like 10,000').required('Money is required'),
+        description: Yup.string().max(200, 'Description must be at most 200 characters').required('Description is required')
     });
 
     const handleSubmit = async (values, actions) => {
         try {
+<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
             // Dispatch editWallet action with id and updated data
             await dispatch(editWallet({ id, data: { ...values, avatar: imageURL } }));
             console.log("Wallet updated successfully:", values);
+=======
+            await dispatch(editWallet({id, data: values}));
+>>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
             navigate("/home");
         } catch (error) {
-            console.error("Failed to update wallet:", error);
         }
     };
 
@@ -47,11 +65,17 @@ export default function EditWallet() {
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <Formik
+<<<<<<< HEAD:src/page/wallet/editWallet/editWallet.js
                         initialValues={wallet}
+=======
+                        initialValues={
+                            wallets
+                        }
+>>>>>>> 9bf91e2f273610ca36eb4ac8f69b2987549251bd:src/page/wallet/updateWallet/EditWallet.js
                         validationSchema={validationSchema}
                         onSubmit={(values) => handleSubmit(values)}
                     >
-                        {({ isSubmitting }) => (
+                        {({isSubmitting}) => (
                             <Form className={"custom-form"}>
                                 <div className="div-button-back">
                                     <div className="div-btn-err"></div>
@@ -115,14 +139,14 @@ export default function EditWallet() {
                                 <button
                                     type="submit"
                                     className="btn btn-primary"
-                                    style={{ marginTop: "20px" }}
+                                    style={{marginTop: "20px"}}
                                     disabled={isSubmitting}
                                 >
                                     Submit
                                 </button>
                                 <button
                                     className="btn btn-secondary"
-                                    style={{ marginTop: "20px" }}
+                                    style={{marginTop: "20px"}}
                                 >
                                     {/*<Link to={"/home"}>Back</Link>*/}
                                 </button>

@@ -7,11 +7,12 @@ import Login from "./page/login/Login";
 import Register from "./page/login/Register";
 import Home from "./page/home/Home";
 import {useSelector} from "react-redux";
-import AddWallet from "./page/wallet/addWallet/addWallet";
+import AddWallet from "./page/wallet/createWallet/AddWallet";
 import Wallet from "./page/wallet/Wallet";
+import {Profiler} from "react";
 import Account from "./page/account/Account";
-import EditWallet from "./page/wallet/editWallet/editWallet";
-import ListWallet from "./page/wallet/listWallets/ListWallet";
+import EditWallet from "./page/wallet/updateWallet/EditWallet";
+import TransferMoney from "./page/wallet/ transfers/TransferMoney";
 function App() {
     const users = useSelector(state => {
         return state.users.users

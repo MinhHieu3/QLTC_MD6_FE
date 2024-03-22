@@ -18,7 +18,7 @@
 
 .title-name {
     font-size: 18px;
-    flex-grow: 1; /* Expand to fill remaining space */
+    flex-grow: 1;
     text-align: center;
 }
 

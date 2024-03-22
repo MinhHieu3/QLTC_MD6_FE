@@ -21,7 +21,7 @@ export const deleteWallet = createAsyncThunk(
     }
 )
 export const editWallet = createAsyncThunk(
-    'wallets/editWallet',
+    'wallets/updateWallet',
     async ({id, data}) => {
         const res = await axios.put('http://localhost:8080/users/wallets/' + id, data)
 
@@ -30,9 +30,16 @@ export const editWallet = createAsyncThunk(
     }
 )
 export const addWallet = createAsyncThunk(
-    'wallets/addWallet',
+    'wallets/createWallet',
     async (values) => {
         const res = await axios.post('http://localhost:8080/users/wallets', values)
+        return res.data
+    }
+)
+export const findByIdWallet = createAsyncThunk(
+    'wallets/findByIdWallet',
+    async (idWallet) => {
+        const res = await axios.get('http://localhost:8080/users/wallets/'+idWallet+'/findByIdWallet')
         return res.data
     }
 )

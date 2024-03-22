@@ -1,7 +1,7 @@
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import "./addWallet.css";
+import "./AddWallet.css";
 import CustomToast from "../../toas/CustomToast";
 import { useEffect, useState } from "react";
 import 'firebase/storage';

@@ -142,19 +142,21 @@
 
 .form-sidebar {
     width: 20vw;
-    height: 39vh;
-    top: 7vh;
+    height: 40vh;
+    top: 7.5vh;
     left: 6vw;
     position: fixed;
     background: white;
-    -webkit-box-shadow: 1px 0px 4px 0px rgba(0,0,0,0.25);
-    -moz-box-shadow: 1px 0px 4px 0px rgba(0,0,0,0.25);
     box-shadow: 1px 0px 4px 0px rgba(0,0,0,0.25);
     border-radius: 5px;
     display: none;
     cursor: pointer;
-    overflow: auto ;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
-.show{
+
+.show {
     display: block;
 }
+
