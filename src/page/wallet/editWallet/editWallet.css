@@ -9,18 +9,15 @@
 .form-wrapper {
     padding: 20px;
 }
-
-/*.form-group {*/
-/*    margin-bottom: 20px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: flex-start;*/
-/*}*/
-
 .form-group label {
     font-weight: bold;
-    width: 30%; /* Độ rộng của nhãn */
-    margin-right: 10px; /* Khoảng cách giữa nhãn và input */
+    width: 30%;
+    margin-right: 10px;
+}
+.form-group img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
 
 .form-control {
