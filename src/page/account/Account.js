@@ -20,10 +20,16 @@ export default function Account() {
         console.log("user", state.users.usersById)
         return state.users.usersById
     })
+
     useEffect(() => {
         dispatch(findById(users.id))
     }, [])
-
+    const oldUserData = {
+        // avatar: user.avatar,
+        name: user.name,
+        phone: user.phone,
+        password:users.password
+    };
     const handleSubmit = (values) => {
 
     }
@@ -47,8 +53,8 @@ export default function Account() {
                     <div className="main-account-top1">
                         <div className="child-div">
                             <img className="img-profile-account"
-                                 src={users.avatar}
-                                 alt=""
+                                 src={user.avatar}
+                                 alt={''}
                             />
                         </div>
                         <div className="child-div profile-account-center" style={{minWidth: 250}}>
@@ -60,7 +66,7 @@ export default function Account() {
                             <button className="btn btn-secondary" onClick={handleUpdateClick}>Update</button>
                         </div>
                         <Formik
-                            initialValues={users}
+                            initialValues={oldUserData}
                             onSubmit={(values) => {
                                 handleSubmit(values)
                             }}
@@ -72,6 +78,7 @@ export default function Account() {
                                         <div className={"border-wallets update-profile-table"}>
                                             <div className="form-group-edit-account">
                                                 <label htmlFor="avatarInput">Avatar:</label>
+                                                <img src={user.avatar} alt="Avatar" className="img-edit-account" />
                                                 <Field type="file" name="avatar" className="form-control-file"
                                                        id="avatarInput"/>
                                             </div>

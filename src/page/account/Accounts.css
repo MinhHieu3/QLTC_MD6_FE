@@ -67,7 +67,10 @@
     width: 100px;
     height: 100px;
 }
-
+.img-edit-account{
+    width: 88px;
+    height: 88px;
+}
 .profile-account-center {
     justify-content: center;
     margin: auto;
