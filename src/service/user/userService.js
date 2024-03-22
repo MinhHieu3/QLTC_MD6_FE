@@ -37,3 +37,10 @@ export const createUsers = createAsyncThunk(
         }
     }
 );
+export const editUsers = createAsyncThunk(
+    'users/updateUsers',
+    async ({id, data}) => {
+        const res = await axios.put(`http://localhost:8080/users/` + id, data)
+        return res.data
+    }
+)
