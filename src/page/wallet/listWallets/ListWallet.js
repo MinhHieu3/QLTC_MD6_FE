@@ -95,8 +95,8 @@ export default function ListWallet() {
                                 <div className="btn-myWallet pay"
                                      onClick={() => handlePaymentButtonClick(index)}>Payment
                                 </div>
-                                <div className="btn-myWallet">
-                                    <Link to={`/home/edit-wallets/${currentWallet.id}`}>Del</Link>
+                                <div className="btn-myWallet del">
+                                    <div className="btn-myWallet" onClick={() => handleDeleteWallet(currentWallet.id)}>Del</div>
                                 </div>
                             </div>
                         </>
