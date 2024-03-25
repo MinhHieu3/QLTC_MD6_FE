@@ -20,29 +20,39 @@ export default function ListWallet() {
     const [isShow, setIsShow] = useState(false);
     const [selectedWalletIndex, setSelectedWalletIndex] = useState(null);
     let wallet = wallets[selectedWalletIndex];
+    console.log(walletById)
     const handleSelectChange = async (e) => {
         const selectedValue = e.target.value;
         await dispatch(findByIdWallet(selectedValue));
         setSelectedFruit(selectedValue);
     };
-    const handlePayMoney = async (values) => {
+    const handlePayMoney = async () => {
         let money = document.getElementById("money").value;
-        if (selectedWalletIndex != null && selectedFruit && !isNaN(money) && money !== '') {
+        let restMoney = wallet.money - parseInt(money);
+        let newMoney = walletById.money + parseInt(money);
+        if (selectedWalletIndex !== null && walletById !==[]) {
+            console.log(restMoney)
+            console.log(newMoney)
             if (wallet) {
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${wallet.money - money}`).then();
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${walletById.money + parseInt(money)}`).then(()=>{
-                    setShowToast(true)
-                    setShowPayment(false)
-                    setTimeout(()=>{
-                       window.location.reload()
-                    },1000)
-                });
 
+                try {
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`);
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${newMoney}`);
+                    setShowToast(true);
+                    setShowPayment(false);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } catch (error) {
+                    console.error('Lỗi khi chuyển tiền:', error);
+                    setShowToastFail(true);
+                }
             } else {
-                setShowToastFail(true)
+                setShowToastFail(true);
             }
         }
     };
+
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
@@ -96,7 +106,8 @@ export default function ListWallet() {
                                 <div className="btn-myWallet pay"
                                      onClick={() => handlePaymentButtonClick(index)}>Payment
                                 </div>
-                                <div className="btn-myWallet del" onClick={()=>handleDeleteWallet(currentWallet.id)}>Del
+                                <div className="btn-myWallet del"
+                                     onClick={() => handleDeleteWallet(currentWallet.id)}>Del
                                 </div>
                             </div>
                         </>
@@ -106,7 +117,7 @@ export default function ListWallet() {
             {showPayment && (
                 <div className={"border-payment"}>
                     <Formik initialValues={{}} onSubmit={(values) => {
-                        handlePayMoney(values)
+                        handlePayMoney()
                     }}>
                         <Form>
                             <div>
