@@ -13,35 +13,46 @@ export default function ListWallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const walletById = useSelector(state => state.wallets.findByIdWallet);
     const [showToast, setShowToast] = useState(false);
+    const [showToastDel, setShowToastDel] = useState(false);
     const [showToastFail, setShowToastFail] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
     const [selectedFruit, setSelectedFruit] = useState(wallets.length > 0 ? wallets[0].id : '');
     const [isShow, setIsShow] = useState(false);
     const [selectedWalletIndex, setSelectedWalletIndex] = useState(null);
     let wallet = wallets[selectedWalletIndex];
+    console.log(walletById)
     const handleSelectChange = async (e) => {
         const selectedValue = e.target.value;
         await dispatch(findByIdWallet(selectedValue));
         setSelectedFruit(selectedValue);
     };
-    const handlePayMoney = async (values) => {
+    const handlePayMoney = async () => {
         let money = document.getElementById("money").value;
-        if (selectedWalletIndex != null && selectedFruit && !isNaN(money) && money !== '') {
+        let restMoney = wallet.money - parseInt(money);
+        let newMoney = walletById.money + parseInt(money);
+        if (selectedWalletIndex !== null && walletById !==[]) {
+            console.log(restMoney)
+            console.log(newMoney)
             if (wallet) {
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${wallet.money - money}`).then();
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${walletById.money + parseInt(money)}`).then(()=>{
-                    setShowToast(true)
-                    setShowPayment(false)
-                    setTimeout(()=>{
-                       window.location.reload()
-                    },1000)
-                });
 
+                try {
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`);
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${newMoney}`);
+                    setShowToast(true);
+                    setShowPayment(false);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } catch (error) {
+                    console.error('Lỗi khi chuyển tiền:', error);
+                    setShowToastFail(true);
+                }
             } else {
-                setShowToastFail(true)
+                setShowToastFail(true);
             }
         }
     };
+
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
@@ -49,9 +60,8 @@ export default function ListWallet() {
     const handleDeleteWallet = (id) => {
         dispatch(deleteWallet(id))
             .then(() => {
-                setShowToast(true);
+                setShowToastDel(true);
             })
-
     };
 
     const handlePaymentButtonClick = (index) => {
@@ -64,6 +74,7 @@ export default function ListWallet() {
     };
     return (
         <>{showToast && <CustomToast message="Successful money transfer!"/>}
+            {showToastDel && <CustomToast message="Deleted successfully!!"/>}
             {showToastFail && <CustomToast message="money transfer failed"/>}
             <div className="flex-container-account-wallet">
                 <div className={"title-nav-wallet"}>
@@ -95,8 +106,8 @@ export default function ListWallet() {
                                 <div className="btn-myWallet pay"
                                      onClick={() => handlePaymentButtonClick(index)}>Payment
                                 </div>
-                                <div className="btn-myWallet">
-                                    <Link to={`/home/edit-wallets/${currentWallet.id}`}>Del</Link>
+                                <div className="btn-myWallet del"
+                                     onClick={() => handleDeleteWallet(currentWallet.id)}>Del
                                 </div>
                             </div>
                         </>
@@ -106,7 +117,7 @@ export default function ListWallet() {
             {showPayment && (
                 <div className={"border-payment"}>
                     <Formik initialValues={{}} onSubmit={(values) => {
-                        handlePayMoney(values)
+                        handlePayMoney()
                     }}>
                         <Form>
                             <div>
