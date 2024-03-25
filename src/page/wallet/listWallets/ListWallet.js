@@ -34,7 +34,6 @@ export default function ListWallet() {
             console.log(restMoney)
             console.log(newMoney)
             if (wallet) {
-
                 try {
                     await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`);
                     await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${newMoney}`);

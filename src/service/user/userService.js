@@ -48,6 +48,7 @@ export const deleteUsers = createAsyncThunk(
     'users/deleteUsers',
     async (id) => {
         const res = await axios.delete(`http://localhost:8080/users/` + id)
+        console.log("check res",res)
         return id
     }
 )
