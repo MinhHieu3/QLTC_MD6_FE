@@ -2,7 +2,7 @@ import "./Accounts.css"
 import {useEffect, useState} from "react";
 import {Formik, Form, Field} from 'formik';
 import {useDispatch, useSelector} from "react-redux";
-import {editUsers, findById} from "../../service/user/userService";
+import {deleteUsers, editUsers, findById} from "../../service/user/userService";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {initializeApp} from "firebase/app";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
@@ -70,6 +70,9 @@ export default function Account() {
     }, [])
 
 
+    const handleDeleteUser = (id) => {
+        dispatch(deleteUsers(id)).then()
+    };
     const handleSubmit = async (values, actions) => {
         values.username = user.username;
         values.password = user.password;
@@ -225,7 +228,9 @@ export default function Account() {
                 <a href="/login">
                     <button className={"btn btn-secondary sing-out-account-btn"}>Sign out</button>
                 </a>
-                <button className={"btn btn-danger"} style={{height:40, marginTop:9}}>Delete</button>
+                <button onClick={() => {
+                    handleDeleteUser()
+                }} className={"btn btn-danger"} style={{height:40, marginTop:9}}>Delete</button>
             </div>
         </div>
     </>)
