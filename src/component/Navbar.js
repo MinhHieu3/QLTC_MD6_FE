@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./Navbar.css";
 import accounting from 'accounting';
 import {getIndexWallet} from "../service/wallet/walletService";
 import {Link, useNavigate} from "react-router-dom";
+import {getDetails} from "../service/detail/detailService";
 
 export default function Navbar() {
     const wallets = useSelector(state => state.wallets.wallets);
@@ -12,7 +13,6 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const firstWallet = wallets[selectedWalletIndex];
     const navigate = useNavigate();
-
     const handleClick = () => {
         setIsShow(!isShow);
     };
@@ -23,13 +23,14 @@ export default function Navbar() {
 
     };
 
+
     const handleOutsideClick = (event) => {
         if (!event.target.closest('.lib-item-tab')) {
             setIsShow(false);
         }
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         document.addEventListener("click", handleOutsideClick);
         return () => {
             document.removeEventListener("click", handleOutsideClick);

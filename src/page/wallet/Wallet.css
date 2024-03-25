@@ -24,7 +24,8 @@ a.nav-create-wallet{
     width: 40vw;
     height: 28vh;
     background-color: white;
-    border-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius:8px ;
     -webkit-box-shadow: -6px 10px 25px -6px rgba(201, 201, 201, 0.75);
     -moz-box-shadow: -6px 10px 25px -6px rgba(201, 201, 201, 0.75);
     box-shadow: -6px 10px 25px -6px rgba(201, 201, 201, 0.75);
@@ -91,4 +92,13 @@ a.nav-create-wallet{
 }
 .info-wallet p{
     text-align: right;
+}
+.hr-div{
+    width: 40vw;
+    height: 4vh;
+    background-color: #F4F4F4;
+}
+.container-detail-wallet{
+    width: 40vw;
+    background-color: white;
 }
