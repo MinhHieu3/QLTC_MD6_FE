@@ -10,8 +10,8 @@ export default function DetailWallets() {
     const details = useSelector(state => state.details.details);
     const [showToast, setShowToast] = useState(false);
     const [newDetail, setNewDetail] = useState({
-        note: '',
-        amount: 0,
+        description: '',
+        money: 0,
         time: new Date().toISOString().slice(0, 16)
     });
 
@@ -32,8 +32,8 @@ export default function DetailWallets() {
             await dispatch(addDetail(newDetail));
             setShowToast(true);
             setNewDetail({
-                note: '',
-                amount: 0,
+                description: '',
+                money: 0,
                 time: new Date().toISOString().slice(0, 16)
             });
         } catch (error) {
@@ -51,8 +51,8 @@ export default function DetailWallets() {
                 </div>
                 <div className="profile-myDetails">
                     <form onSubmit={handleAddExpense}>
-                        <input type="text" name="note" value={newDetail.note} onChange={handleChange} placeholder="Enter note" />
-                        <input type="number" name="amount" value={newDetail.amount} onChange={handleChange} placeholder="Enter amount" />
+                        <input type="text" name="description" value={newDetail.description} onChange={handleChange} placeholder="Enter description" />
+                        <input type="number" name="money" value={newDetail.money} onChange={handleChange} placeholder="Enter money" />
                         <input type="datetime-local" name="time" value={newDetail.time} onChange={handleChange} />
                         <button type="submit">Add Expense</button>
                     </form>
@@ -61,8 +61,8 @@ export default function DetailWallets() {
                             <hr />
                             <div className="main-myDetails-top1">
                                 <div className="profile-myDetails-center">
-                                    <div>Amount: {currentDetail.amount}</div>
-                                    <div>Note: {currentDetail.note}</div>
+                                    <div>Amount: {currentDetail.description}</div>
+                                    <div>Note: {currentDetail.money}</div>
                                     <div>Time: {currentDetail.time}</div>
                                 </div>
                             </div>
