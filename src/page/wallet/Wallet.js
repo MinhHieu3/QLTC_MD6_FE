@@ -19,7 +19,6 @@ export default function Wallet() {
                     Add Transaction
                 </div>
             </Link>
-            {wallet && (
                 <div className="container-wallet">
                     <div className="nav-date">
                         <div className="btn-lastMonth">
@@ -46,7 +45,6 @@ export default function Wallet() {
                         </div>
                     </div>
                 </div>
-            )}
         </>
     )
 }
