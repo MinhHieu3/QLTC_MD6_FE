@@ -158,3 +158,12 @@
     display: flex;
     justify-content: end;
 }
+.btn-myWallet.del{
+    color: #A8A8A8;
+    cursor: pointer;
+
+}
+.btn-myWallet.del:hover{
+    color: #2CB84C;
+
+}

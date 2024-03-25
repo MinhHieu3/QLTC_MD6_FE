@@ -1,17 +1,20 @@
-import "./Wallet.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import {addDetail, deleteDetail} from "../../service/detail/detailService"; // Import action từ slice detailSlice
+import "./Wallet.css";
 
 export default function Wallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const selectedWalletIndex = useSelector(state => state.wallets.index);
     const wallet = wallets[selectedWalletIndex];
-    const total = wallet ? (wallet.money || 0) : 0;
+    // const total = wallet ? (wallet.money || 0) : 0;
+    const details = useSelector(state => state.details.details);
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
     };
-
+    const [expenseAmount, setExpenseAmount] = useState("");
+    const [expenseNote, setExpenseNote] = useState("");
     return (
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
@@ -38,10 +41,10 @@ export default function Wallet() {
                             <p>Outflow</p>
                         </div>
                         <div className="info-wallet">
-                            <p>{formatMoney(wallet.money)}</p>
+                            {/*<p>{formatMoney(wallet.money)}</p>*/}
                             <p>0 đ</p>
-                            <hr />
-                            <p>+ {formatMoney(total)}</p>
+                          {/*  <hr   /!*<p>+ {formatMoney(total)}</p>/>*/}
+                          {/**!/*/}
                         </div>
                     </div>
                 </div>
