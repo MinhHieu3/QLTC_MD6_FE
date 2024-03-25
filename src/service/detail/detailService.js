@@ -3,12 +3,8 @@ import axios from "axios";
 
 export const getDetails = createAsyncThunk(
     'details/getDetails',
-    async (token) => {
-        const res = await axios.get('http://localhost:8080/details', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+    async (id) => {
+        const res = await axios.get('http://localhost:8080/api/details/'+id);
         return res.data;
     }
 );
