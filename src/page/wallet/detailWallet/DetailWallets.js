@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getDetails, addDetail } from "../../../service/detail/detailService";
 import CustomToast from "../../toas/CustomToast";
+import "./DetailWallets.css"
 
 export default function DetailWallets() {
     const dispatch = useDispatch();
@@ -43,33 +44,44 @@ export default function DetailWallets() {
 
     return (
         <>
-            {showToast && <CustomToast message="Successful money transfer!" />}
-            <div className="flex-container-account-details">
-                <div className={"title-nav-details"}>
-                    <div className={"title-nav-center"}>My Details</div>
-                    <div className="clone-myDetails" onClick={() => { navigate("/home") }}>X</div>
+            <div className="container-detail">
+                <div className="category-wallets">
+                    <h1>Category</h1>
+                    <div className="category-name">
+                        Tiền điện
+                    </div>
                 </div>
-                <div className="profile-myDetails">
-                    <form onSubmit={handleAddExpense}>
-                        <input type="text" name="description" value={newDetail.description} onChange={handleChange} placeholder="Enter description" />
-                        <input type="number" name="money" value={newDetail.money} onChange={handleChange} placeholder="Enter money" />
-                        <input type="datetime-local" name="time" value={newDetail.time} onChange={handleChange} />
-                        <button type="submit">Add Expense</button>
-                    </form>
-                    {details.map((currentDetail, index) => (
-                        <div key={index}>
-                            <hr />
-                            <div className="main-myDetails-top1">
-                                <div className="profile-myDetails-center">
-                                    <div>Amount: {currentDetail.description}</div>
-                                    <div>Note: {currentDetail.money}</div>
-                                    <div>Time: {currentDetail.time}</div>
-                                </div>
-                            </div>
+                <div className="detail-wallets">
+                    {showToast && <CustomToast message="Successful money transfer!" />}
+                    <div className="flex-container-account-details">
+                        <div className={"title-nav-details"}>
+                            <div className={"title-nav-center"}>My Details</div>
+                            <div className="clone-myDetails" onClick={() => { navigate("/home") }}>X</div>
                         </div>
-                    ))}
+                        <div className="profile-myDetails">
+                            <form onSubmit={handleAddExpense}>
+                                <input type="text" name="description" value={newDetail.description} onChange={handleChange} placeholder="Enter description" />
+                                <input type="number" name="money" value={newDetail.money} onChange={handleChange} placeholder="Enter money" />
+                                <input type="datetime-local" name="time" value={newDetail.time} onChange={handleChange} />
+                                <button type="submit">Add Expense</button>
+                            </form>
+                            {details.map((currentDetail, index) => (
+                                <div key={index}>
+                                    <hr />
+                                    <div className="main-myDetails-top1">
+                                        <div className="profile-myDetails-center">
+                                            <div>Amount: {currentDetail.description}</div>
+                                            <div>Note: {currentDetail.money}</div>
+                                            <div>Time: {currentDetail.time}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </>
     );
 }

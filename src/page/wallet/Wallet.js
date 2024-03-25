@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 import "./Wallet.css";
 
 export default function Wallet() {
@@ -9,7 +9,7 @@ export default function Wallet() {
     const wallet = wallets[selectedWalletIndex];
     const money = wallet ? wallet.money : 0;
     const formatMoney = (amount) => {
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
     const total = wallet ? (wallet.money || 0) : 0;
 
@@ -32,7 +32,7 @@ export default function Wallet() {
                         <p>Future</p>
                     </div>
                 </div>
-                <hr />
+                <hr/>
                 <div className="total-wallet">
                     <div className="name-total-wallet">
                         <p>Inflow</p>
@@ -40,9 +40,10 @@ export default function Wallet() {
                     </div>
                     <div className="info-wallet">
                         <p>{formatMoney(money)}</p>
-                        <hr />
+                        <hr/>
                         <p>+ {formatMoney(total)}</p>
                     </div>
+
                 </div>
             </div>
 
