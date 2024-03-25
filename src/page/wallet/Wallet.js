@@ -8,7 +8,7 @@ export default function Wallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const selectedWalletIndex = useSelector(state => state.wallets.index);
     const wallet = wallets[selectedWalletIndex];
-    const total = wallet ? (wallet.money || 0) : 0;
+    // const total = wallet ? (wallet.money || 0) : 0;
     const details = useSelector(state => state.details.details);
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
@@ -22,7 +22,6 @@ export default function Wallet() {
                     Add Transaction
                 </div>
             </Link>
-            {wallet && (
                 <div className="container-wallet">
                     <div className="nav-date">
                         <div className="btn-lastMonth">
@@ -42,14 +41,13 @@ export default function Wallet() {
                             <p>Outflow</p>
                         </div>
                         <div className="info-wallet">
-                            <p>{formatMoney(wallet.money)}</p>
+                            {/*<p>{formatMoney(wallet.money)}</p>*/}
                             <p>0 đ</p>
-                            <hr />
-                            <p>+ {formatMoney(total)}</p>
+                          {/*  <hr   /!*<p>+ {formatMoney(total)}</p>/>*/}
+                          {/**!/*/}
                         </div>
                     </div>
                 </div>
-            )}
         </>
     )
 }

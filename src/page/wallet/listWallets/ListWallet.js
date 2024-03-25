@@ -1,3 +1,4 @@
+
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
@@ -13,35 +14,54 @@ export default function ListWallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const walletById = useSelector(state => state.wallets.findByIdWallet);
     const [showToast, setShowToast] = useState(false);
+    const [showToastDel, setShowToastDel] = useState(false);
     const [showToastFail, setShowToastFail] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
     const [selectedFruit, setSelectedFruit] = useState(wallets.length > 0 ? wallets[0].id : '');
     const [isShow, setIsShow] = useState(false);
     const [selectedWalletIndex, setSelectedWalletIndex] = useState(null);
     let wallet = wallets[selectedWalletIndex];
+    console.log(walletById)
     const handleSelectChange = async (e) => {
         const selectedValue = e.target.value;
         await dispatch(findByIdWallet(selectedValue));
         setSelectedFruit(selectedValue);
     };
-    const handlePayMoney = async (values) => {
+    const handlePayMoney = async () => {
         let money = document.getElementById("money").value;
-        if (selectedWalletIndex != null && selectedFruit && !isNaN(money) && money !== '') {
-            if (wallet) {
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${wallet.money - money}`).then();
-                await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${walletById.money + parseInt(money)}`).then(()=>{
-                    setShowToast(true)
-                    setShowPayment(false)
-                    setTimeout(()=>{
-                       window.location.reload()
-                    },1000)
-                });
+        let restMoney = wallet.money - parseInt(money);
+        let newMoney = walletById.money + parseInt(money);
 
-            } else {
-                setShowToastFail(true)
+        if (selectedWalletIndex !== null && walletById !== []) {
+            try {
+                if (selectedFruit.length === 0) {
+                    restMoney = wallet.money + parseInt(money);
+                    console.log(restMoney)
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`).then(() => {
+                        setShowToast(true);
+                        setShowPayment(false);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    });
+
+                } else {
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`);
+                    await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${newMoney}`);
+                    setShowToast(true);
+                    setShowPayment(false);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                }
+
+            } catch (error) {
+                setShowToastFail(true);
             }
         }
     };
+
+
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
@@ -49,9 +69,8 @@ export default function ListWallet() {
     const handleDeleteWallet = (id) => {
         dispatch(deleteWallet(id))
             .then(() => {
-                setShowToast(true);
+                setShowToastDel(true);
             })
-
     };
 
     const handlePaymentButtonClick = (index) => {
@@ -64,6 +83,7 @@ export default function ListWallet() {
     };
     return (
         <>{showToast && <CustomToast message="Successful money transfer!"/>}
+            {showToastDel && <CustomToast message="Deleted successfully!!"/>}
             {showToastFail && <CustomToast message="money transfer failed"/>}
             <div className="flex-container-account-wallet">
                 <div className={"title-nav-wallet"}>
@@ -87,7 +107,6 @@ export default function ListWallet() {
                                 <div className="profile-myWallet-center">
                                     <div>Name: {currentWallet.name}</div>
                                     <div>Money: {formatMoney(currentWallet.money)}</div>
-                                    <div>Description: {currentWallet.description}</div>
                                 </div>
                                 <div className="btn-myWallet">
                                     <Link to={`/home/edit-wallets/${currentWallet.id}`}>Edit</Link>
@@ -95,8 +114,8 @@ export default function ListWallet() {
                                 <div className="btn-myWallet pay"
                                      onClick={() => handlePaymentButtonClick(index)}>Payment
                                 </div>
-                                <div className="btn-myWallet del">
-                                    <div className="btn-myWallet" onClick={() => handleDeleteWallet(currentWallet.id)}>Del</div>
+                                <div className="btn-myWallet del"
+                                     onClick={() => handleDeleteWallet(currentWallet.id)}>Del
                                 </div>
                             </div>
                         </>
@@ -106,7 +125,7 @@ export default function ListWallet() {
             {showPayment && (
                 <div className={"border-payment"}>
                     <Formik initialValues={{}} onSubmit={(values) => {
-                        handlePayMoney(values)
+                        handlePayMoney().then()
                     }}>
                         <Form>
                             <div>
@@ -148,10 +167,7 @@ export default function ListWallet() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="form-floating">
-                                <input type="number" className="form-control" id="money"
-                                       placeholder="transferred"/>
-                            </div>
+
                             <div className={`outer ${isShow ? 'show' : ''}`}>
                                 <div className="mb-3">
                                     <h6 style={{marginTop: 10}}>Enjoyment account</h6>
@@ -166,8 +182,8 @@ export default function ListWallet() {
                                 </div>
                             </div>
                             <div className="form-floating">
-                    <textarea className="form-control textarea-height" placeholder="Money transfer content"
-                              id="floatingTextarea"></textarea>
+                                <input type="number" className="form-control" id="money"
+                                       placeholder="transferred"/>
                             </div>
                             <hr/>
                             <div style={{
