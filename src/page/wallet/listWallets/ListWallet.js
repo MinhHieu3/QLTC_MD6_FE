@@ -13,6 +13,7 @@ export default function ListWallet() {
     const wallets = useSelector(state => state.wallets.wallets);
     const walletById = useSelector(state => state.wallets.findByIdWallet);
     const [showToast, setShowToast] = useState(false);
+    const [showToastDel, setShowToastDel] = useState(false);
     const [showToastFail, setShowToastFail] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
     const [selectedFruit, setSelectedFruit] = useState(wallets.length > 0 ? wallets[0].id : '');
@@ -49,9 +50,8 @@ export default function ListWallet() {
     const handleDeleteWallet = (id) => {
         dispatch(deleteWallet(id))
             .then(() => {
-                setShowToast(true);
+                setShowToastDel(true);
             })
-
     };
 
     const handlePaymentButtonClick = (index) => {
@@ -64,6 +64,7 @@ export default function ListWallet() {
     };
     return (
         <>{showToast && <CustomToast message="Successful money transfer!"/>}
+            {showToastDel && <CustomToast message="Deleted successfully!!"/>}
             {showToastFail && <CustomToast message="money transfer failed"/>}
             <div className="flex-container-account-wallet">
                 <div className={"title-nav-wallet"}>
@@ -95,8 +96,7 @@ export default function ListWallet() {
                                 <div className="btn-myWallet pay"
                                      onClick={() => handlePaymentButtonClick(index)}>Payment
                                 </div>
-                                <div className="btn-myWallet">
-                                    <Link to={`/home/edit-wallets/${currentWallet.id}`}>Del</Link>
+                                <div className="btn-myWallet del" onClick={()=>handleDeleteWallet(currentWallet.id)}>Del
                                 </div>
                             </div>
                         </>

@@ -160,7 +160,7 @@ export default function EditWallet() {
                                     </div>
                                     <button
                                         type="submit"
-                                        className="btn btn-primary-edit"
+                                        className="btn btn-edit"
                                         style={{marginTop: "20px", marginLeft: "240px", backgroundColor: "#A8A8A8"}}
                                         disabled={isSubmitting}
                                     >
