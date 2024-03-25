@@ -225,7 +225,7 @@ export default function Account() {
                 <a href="/login">
                     <button className={"btn btn-secondary sing-out-account-btn"}>Sign out</button>
                 </a>
-                <button className={"btn btn-danger"}>Delete</button>
+                <button className={"btn btn-danger"} style={{height:40, marginTop:9}}>Delete</button>
             </div>
         </div>
     </>)
