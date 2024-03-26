@@ -11,6 +11,7 @@ export default function Wallet() {
     const wallet = wallets[selectedWalletIndex];
     const money = wallet ? wallet.money : 0;
     const [showInfoWallets, setShowInfoWallets] = useState(false);
+    const [testDetail, setTestDetail] = useState();
 
     const handleInfoWallets = () => {
         setShowInfoWallets(true);
@@ -22,6 +23,9 @@ export default function Wallet() {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
     const total = wallet ? (wallet.money || 0) : 0;
+
+    const productDetail = detailWallets.filter((item) => item.id === testDetail);
+    console.log('productDetail',productDetail);
     return (
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
@@ -58,7 +62,9 @@ export default function Wallet() {
             <div className="show-detail" onClick={handleInfoWallets}>
                 <div className="hr-div"></div>
                 {detailWallets && detailWallets.map((detail, index) => (
-                    <div key={detail.id}>
+                    <div onClick={() => {
+                        setTestDetail(detail.id);
+                    }} key={detail.id}>
                         <div className="container-detail-wallet" >
                             <div className="date-wallet-detail">
                                 <div className="date-time">26</div>
@@ -72,7 +78,7 @@ export default function Wallet() {
                     </div>
                 ))}
             </div>
-            {detailWallets && detailWallets.map((detail) => (
+            {productDetail && productDetail.map((detail) => (
                 <div>
                     {showInfoWallets && (
                         <div className={"show-detail-if-wallets"}>

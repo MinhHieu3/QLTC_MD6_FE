@@ -74,11 +74,10 @@ export default function Account() {
     useEffect(() => {
         dispatch(findById(users.id)).then(() => {
             setOldUserData({
-                name: user.name, phone: user.phone, password: user.password
+                name: user.name, phone: user.phone
             })
-
         })
-    }, [])
+    }, [showUpdateInfo])
 
 
     const handleDeleteUser = () => {
@@ -146,7 +145,11 @@ export default function Account() {
                             </div>
                         </div>
                         <Formik
-                            initialValues={oldUserData}
+                            initialValues={{
+                                name: user.name,
+                                phone: user.phone,
+                                password: user.password,
+                            }}
                             validationSchema={validationSchema}
                             onSubmit={(values) => {
                                 handleSubmit(values)
