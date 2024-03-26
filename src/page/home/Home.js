@@ -11,6 +11,7 @@ export default function Home() {
     const users = useSelector(state => state.users.users);
     const handlerWallet = () => {
         dispatch(getWallets({id: users.id, token: users.accessToken}))
+
     }
     useEffect(() => {
         handlerWallet()

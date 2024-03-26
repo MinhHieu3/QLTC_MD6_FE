@@ -207,3 +207,18 @@
     display: flex;
     justify-content: end;
 }
+.delete-confirmation-modal{
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+}
+.delete-confirmation-modal-div{
+    color: white;
+    width: 50px;
+    margin: 0 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    border-radius: 8%;
+    cursor: pointer;
+}

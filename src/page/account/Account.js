@@ -9,6 +9,7 @@ import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/st
 import * as Yup from 'yup';
 
 export default function Account() {
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showUpdateInfo, setShowUpdateInfo] = useState(false);
     const [showUpdatePassword, setShowUpdatePassword] = useState(false);
     const [showUpdateTable, setShowUpdateTable] = useState(false);
@@ -80,8 +81,11 @@ export default function Account() {
     }, [])
 
 
-    const handleDeleteUser = (id) => {
-        dispatch(deleteUsers(id)).then()
+    const handleDeleteUser = () => {
+        dispatch(deleteUsers(userId)).then(() => {
+            navigate("/login");
+        });
+        setShowDeleteConfirmation(false);
     };
     const handleSubmit = async (values, actions) => {
         values.username = user.username;
@@ -180,7 +184,8 @@ export default function Account() {
                                             <label htmlFor="phone">Phone (+84):</label>
                                             <Field type="number" id="phone" name="phone" className="form-control"
                                                    placeholder="Enter phone"/>
-                                            {errors.phone && touched.phone && <div className="error">{errors.phone}</div>}
+                                            {errors.phone && touched.phone &&
+                                                <div className="error">{errors.phone}</div>}
                                         </div>
                                         <div className={"close-update-account"}>
                                             <button type="submit" className="btn btn-secondary ">Submit</button>
@@ -244,8 +249,18 @@ export default function Account() {
                 <a href="/login">
                     <button className="btn btn-secondary sing-out-account-btn">Sign out</button>
                 </a>
-                <button onClick={()=> handleDeleteUser(userId)} className="btn btn-danger" style={{ height: 40, marginTop: 9 }}>Delete</button>
+                <button onClick={() => setShowDeleteConfirmation(true)} className="btn btn-danger"
+                        style={{height: 40, marginTop: 9}}>Delete
+                </button>
+
             </div>
+
+            {showDeleteConfirmation && (
+                <div className="delete-confirmation-modal">
+                    <p>Are you sure you want to delete this user?</p>
+                    <div onClick={() => setShowDeleteConfirmation(false)} className={"delete-confirmation-modal-div"} style={{backgroundColor:"gray"}}>No</div>
+                    <div onClick={handleDeleteUser} className={"delete-confirmation-modal-div"} style={{backgroundColor:"#DC3545"}}>Delete</div>
+                </div>)}
         </div>
     </>)
 }

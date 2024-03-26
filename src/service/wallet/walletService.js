@@ -70,10 +70,3 @@ export const transferMoney = createAsyncThunk(
         }
     }
 );
-export const getWalletInfo = createAsyncThunk(
-    'wallet/getWalletInfo',
-    async (walletId) => {
-        const response = await axios.get(`http://localhost:8080/users/wallets/${walletId}`);
-        return response.data;
-    }
-);

@@ -5,7 +5,7 @@ export default function CustomToast({ message }) {
 
     setTimeout(() => {
         setShowToast(false);
-    }, 3000); // Hide toast after 3 seconds
+    }, 3000);
 
     if (!showToast) {
         return null;

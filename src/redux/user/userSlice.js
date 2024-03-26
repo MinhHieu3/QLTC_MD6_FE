@@ -20,10 +20,9 @@ const userSlice = createSlice({
         builder.addCase(editUsers.fulfilled, (state, action) => {
             state.usersById = action.payload
         });
-        builder.addCase(deleteUsers.fulfilled, (state, action) => {
-            state.usersById = state.usersById.filter(users => users.id !== action.payload);
-
-        })
+        builder.addCase(deleteUsers.fulfilled, (state) => {
+            state.usersById = [];
+        });
     }
 })
 export default userSlice.reducer
