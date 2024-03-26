@@ -212,13 +212,26 @@
     display: flex;
     justify-content: end;
 }
-.delete-confirmation-modal-div{
+.delete-confirmation-modal-div-1{
+    background-color: #808080;
     color: white;
-    width: 50px;
-    margin: 0 10px 0 10px;
-    display: flex;
-    justify-content: center;
-    height: 30px;
-    border-radius: 8%;
+    width: 70px;
+    margin: 0 0 0 5px;
+    padding: 2px;
+    height: 32px;
+    border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+}.delete-confirmation-modal-div-2{
+    background-color: rgb(204,39,55);
+    color: white;
+    width: 73px;
+     height: 32px;
+    margin: 0 0 0 10px;
+     padding: 2px 2px 2px 4px;
+     border-radius: 5px;
+    cursor: pointer;
+}
+.delete-confirmation-modal-div:hover{
+
 }

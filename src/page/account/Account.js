@@ -254,12 +254,12 @@ export default function Account() {
                 </button>
 
             </div>
-
             {showDeleteConfirmation && (
                 <div className="delete-confirmation-modal">
-                    <p>Are you sure you want to delete this user?</p>
-                    <div onClick={() => setShowDeleteConfirmation(false)} className={"delete-confirmation-modal-div"} style={{backgroundColor:"gray"}}>No</div>
-                    <div onClick={handleDeleteUser} className={"delete-confirmation-modal-div"} style={{backgroundColor:"#DC3545"}}>Delete</div>
+                    <div style={{color:"rgb(204,39,55)", marginRight:10}}>DELETE ACCOUNT </div>
+                    <p>  "{users.username}"</p>
+                    <div onClick={() => setShowDeleteConfirmation(false)} className={"delete-confirmation-modal-div-1"}>Cancel</div>
+                    <div onClick={handleDeleteUser} className={"delete-confirmation-modal-div-2"}>Continue</div>
                 </div>)}
         </div>
     </>)
