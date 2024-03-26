@@ -1,8 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./Wallet.css";
-import {getDetails} from "../../service/detail/detailService";
 
 export default function Wallet() {
     const dispatch=useDispatch();
@@ -15,8 +13,6 @@ export default function Wallet() {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
     const total = wallet ? (wallet.money || 0) : 0;
-
-    console.log(detailWallets)
     return (
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
@@ -52,7 +48,6 @@ export default function Wallet() {
             </div>
             <div className="hr-div"></div>
             <div className="container-detail-wallet">
-
             </div>
 
         </>
