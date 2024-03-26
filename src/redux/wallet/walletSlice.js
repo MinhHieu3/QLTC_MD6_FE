@@ -4,7 +4,7 @@ import {
     deleteWallet,
     editWallet,
     findByIdWallet,
-    getIndexWallet,
+    setIndexWallet,
     getWallets,
     searchWallet,
     transferMoney
@@ -31,7 +31,7 @@ const walletSlice = createSlice({
         builder.addCase(searchWallet.fulfilled, (state, action) => {
             state.search = action.payload
         })
-        builder.addCase(getIndexWallet.fulfilled, (state, action) => {
+        builder.addCase(setIndexWallet.fulfilled, (state, action) => {
             state.index = action.payload
         })
         builder.addCase(findByIdWallet.fulfilled, (state, action) => {
