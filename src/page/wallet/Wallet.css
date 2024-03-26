@@ -93,13 +93,6 @@ a.nav-create-wallet{
 .info-wallet p{
     text-align: right;
 }
-<<<<<<< HEAD
-.container-category {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 select {
     width: 100%;
     padding: 10px;
@@ -115,14 +108,3 @@ select {
 select:focus {
     border-color: #007bff;
 }
-=======
-.hr-div{
-    width: 40vw;
-    height: 4vh;
-    background-color: #F4F4F4;
-}
-.container-detail-wallet{
-    width: 40vw;
-    background-color: white;
-}
->>>>>>> 72d0848f8bbe6c680fde8af3081fcd7f5cefd4ae

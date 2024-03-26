@@ -12,7 +12,8 @@ import Wallet from "./page/wallet/Wallet";
 import Account from "./page/account/Account";
 import EditWallet from "./page/wallet/updateWallet/EditWallet";
 import ListWallet from "./page/wallet/listWallets/ListWallet";
-import DetailWallets from "./page/wallet/detailWallet/DetailWallets";
+import CategoryWallets from "./page/wallet/detailWallet/CategoryWallets";
+import AddCategoryWallet from "./page/wallet/detailWallet/AddCategoryWallet";
 function App() {
     const users = useSelector(state => {
         return state.users.users
@@ -32,7 +33,8 @@ function App() {
                             <Route path={'edit-wallets/:id'} element={<EditWallet/>}></Route>
                             <Route path={'profile'} element={<Account/>}></Route>
                             <Route path={'profile-wallets'} element={<ListWallet/>}></Route>
-                            <Route path={'detail'} element={<DetailWallets/>}></Route>
+                            <Route path={'category'} element={<CategoryWallets/>}></Route>
+                            <Route path={'category/add'} element={<AddCategoryWallet/>}></Route>
                         </Route> :
                         <Route path={"/login"} element={<HomeLogin/>}></Route>
                 }
