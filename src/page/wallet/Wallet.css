@@ -93,12 +93,61 @@ a.nav-create-wallet{
 .info-wallet p{
     text-align: right;
 }
+.show-detail{
+    width: 40vw;
+    max-height: 40vh;
+    overflow: auto;
+    scrollbar-width: none;
+    background-color: white;
+    border-bottom-left-radius:8px ;
+    border-bottom-right-radius:8px ;
+}
 .hr-div{
     width: 40vw;
     height: 4vh;
     background-color: #F4F4F4;
 }
+
 .container-detail-wallet{
     width: 40vw;
     background-color: white;
+    height: 6vh;
+    display: flex;
+}
+.container-detail-wallet:hover{
+    background-color: #F0F9F1;
+    cursor: pointer;
+}
+.date-wallet-detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 5vh;
+}
+.date-time{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: 5vw;
+    height: 5vh;
+}
+.time{
+    width: 25vw;
+    height: 5vh;
+}
+.money-wallet-detail{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 28vw;
+    height: 5vh;
+    margin-right: 10px;
+}
+.hrs {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 1px 0;
 }
