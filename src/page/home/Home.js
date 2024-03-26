@@ -1,3 +1,4 @@
+
 import Navbar from "../../component/Navbar";
 import Sidebar from "../../component/SideBar";
 import {Outlet} from "react-router-dom";

@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./Navbar.css";
@@ -7,8 +8,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {getDetails} from "../service/detail/detailService";
 
 export default function Navbar({wallets, selectedWalletIndex}) {
+    const navigate=useNavigate();
     const dispatch = useDispatch();
-    const detail = useSelector(state => state.details.details);
     const [isShow, setIsShow] = useState(false);
     const showWallet = wallets[selectedWalletIndex]
     const handleClick = () => {
@@ -16,6 +17,8 @@ export default function Navbar({wallets, selectedWalletIndex}) {
     };
     const choiceWallet = (index) => {
         dispatch(setIndexWallet(index));
+        navigate("/home")
+
     };
     useEffect(() => {
         if (showWallet) {
