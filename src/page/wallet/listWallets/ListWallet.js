@@ -1,4 +1,3 @@
-
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
@@ -31,21 +30,11 @@ export default function ListWallet() {
         let money = document.getElementById("money").value;
         let restMoney = wallet.money - parseInt(money);
         let newMoney = walletById.money + parseInt(money);
-
-        if (selectedWalletIndex !== null && walletById !== []) {
-            try {
-                if (selectedFruit.length === 0) {
-                    restMoney = wallet.money + parseInt(money);
-                    console.log(restMoney)
-                    await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`).then(() => {
-                        setShowToast(true);
-                        setShowPayment(false);
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1000);
-                    });
-
-                } else {
+        if (selectedWalletIndex !== null && walletById !==[]) {
+            console.log(restMoney)
+            console.log(newMoney)
+            if (wallet) {
+                try {
                     await axios.put(`http://localhost:8080/users/wallets?walletId=${wallet.id}&newMoneyValue=${restMoney}`);
                     await axios.put(`http://localhost:8080/users/wallets?walletId=${selectedFruit}&newMoneyValue=${newMoney}`);
                     setShowToast(true);
@@ -53,14 +42,15 @@ export default function ListWallet() {
                     setTimeout(() => {
                         window.location.reload();
                     }, 1000);
+                } catch (error) {
+                    console.error('Lỗi khi chuyển tiền:', error);
+                    setShowToastFail(true);
                 }
-
-            } catch (error) {
+            } else {
                 setShowToastFail(true);
             }
         }
     };
-
 
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
@@ -107,6 +97,7 @@ export default function ListWallet() {
                                 <div className="profile-myWallet-center">
                                     <div>Name: {currentWallet.name}</div>
                                     <div>Money: {formatMoney(currentWallet.money)}</div>
+                                    <div>Description: {currentWallet.description}</div>
                                 </div>
                                 <div className="btn-myWallet">
                                     <Link to={`/home/edit-wallets/${currentWallet.id}`}>Edit</Link>
@@ -125,7 +116,7 @@ export default function ListWallet() {
             {showPayment && (
                 <div className={"border-payment"}>
                     <Formik initialValues={{}} onSubmit={(values) => {
-                        handlePayMoney().then()
+                        handlePayMoney()
                     }}>
                         <Form>
                             <div>
@@ -167,7 +158,10 @@ export default function ListWallet() {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="form-floating">
+                                <input type="number" className="form-control" id="money"
+                                       placeholder="transferred"/>
+                            </div>
                             <div className={`outer ${isShow ? 'show' : ''}`}>
                                 <div className="mb-3">
                                     <h6 style={{marginTop: 10}}>Enjoyment account</h6>
@@ -182,8 +176,8 @@ export default function ListWallet() {
                                 </div>
                             </div>
                             <div className="form-floating">
-                                <input type="number" className="form-control" id="money"
-                                       placeholder="transferred"/>
+                    <textarea className="form-control textarea-height" placeholder="Money transfer content"
+                              id="floatingTextarea"></textarea>
                             </div>
                             <hr/>
                             <div style={{

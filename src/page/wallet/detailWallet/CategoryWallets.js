@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getDetails, addDetail } from "../../../service/detail/detailService";
 import { getCategoryDetails, addCategory } from "../../../service/category/categoryService";
 import CustomToast from "../../toas/CustomToast";
 import "./CategoryWallets.css";
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDi3k1wLzdUDz_UPUeuKatQBGvdcuMjPrQ",
@@ -31,6 +32,7 @@ export default function CategoryWallets() {
         name: "",
         avatar: "",
     });
+
     const [uploadProgress, setUploadProgress] = useState(0);
     const [imagePreviewURL, setImagePreviewURL] = useState(""); // State to store temporary image URL
 
@@ -95,7 +97,8 @@ export default function CategoryWallets() {
             <div className="container-detail">
                 <div className="category-wallets">
                     <div className="container-category">
-                        <div className="span-category"><span>Category details</span></div>
+                        <div className="span-category"><span style={{marginLeft:'150px'}}>Category details</span><div className={'btn-add-category'}><button onClick={handleAddCategory}>Add Category</button></div>
+                        </div>
                         <div className="clone-myDetails" onClick={() => navigate("/home")}>X</div>
                     </div>
                     <div className="list-category">
@@ -111,40 +114,65 @@ export default function CategoryWallets() {
                                     </div>
                                     <div className="category-name">{category.name}</div>
                                 </div>
+
                             </div>
                         ))}
                     </div>
-                </div>
-                {showDetail && (
-                    <div className="detail-wallets">
 
+                </div>
+                {/*{showDetail && (*/}
+                {/*    <div className="right-list-category">*/}
+                {/*        <div className="detail-wallets">*/}
+                {/*            <div className="right-add-category">*/}
+                {/*                <form>*/}
+                {/*                    <label htmlFor="categoryName">Category Name:</label>*/}
+                {/*                    <input*/}
+                {/*                        type="text"*/}
+                {/*                        id="categoryName"*/}
+                {/*                        name="categoryName"*/}
+                {/*                        value={categories.name}*/}
+                {/*                        disabled*/}
+                {/*                    />*/}
+                {/*                    <label htmlFor="categoryImage">Category Image:</label>*/}
+                {/*                    <div className="category-image-container">*/}
+                {/*                        <img src={categories.image} alt="Category" />*/}
+                {/*                    </div>*/}
+                {/*                </form>*/}
+                {/*                <div className="clone-myDetails" onClick={() => setShowDetail(false)}>X</div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*)}*/}
+
+
+
+
+                {showAddCategoryForm && (
+                    <div className="add-category-form">
+                        <div className="clone-myDetails" onClick={() => setShowAddCategoryForm(false)}>X</div>
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Category Name"
+                                value={newCategory.name}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="file"
+                                name="avatar"
+                                onChange={handleImageUpload}
+                            />
+                            {imagePreviewURL && <img src={imagePreviewURL} alt="Preview" />}
+                            {uploadProgress > 0 && uploadProgress < 100 && (
+                                <div className="upload-progress">{uploadProgress}%</div>
+                            )}
+                            <button type="submit">Add Category</button>
+                        </form>
                     </div>
                 )}
             </div>
-            <button onClick={handleAddCategory}>Add Category</button>
-            {showAddCategoryForm && (
-                <div className="add-category-form">
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Category Name"
-                            value={newCategory.name}
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="file"
-                            name="avatar"
-                            onChange={handleImageUpload}
-                        />
-                        {imagePreviewURL && <img src={imagePreviewURL} alt="Preview" />}
-                        {uploadProgress > 0 && uploadProgress < 100 && (
-                            <div className="upload-progress">{uploadProgress}%</div>
-                        )}
-                        <button type="submit">Add Category</button>
-                    </form>
-                </div>
-            )}
+
         </>
     );
 }
