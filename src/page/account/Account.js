@@ -2,12 +2,14 @@ import "./Accounts.css"
 import {useEffect, useState} from "react";
 import {Formik, Form, Field} from 'formik';
 import {useDispatch, useSelector} from "react-redux";
-import {editUsers, findById} from "../../service/user/userService";
+import {deleteUsers, editUsers, findById} from "../../service/user/userService";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {initializeApp} from "firebase/app";
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from "firebase/storage";
+import * as Yup from 'yup';
 
 export default function Account() {
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showUpdateInfo, setShowUpdateInfo] = useState(false);
     const [showUpdatePassword, setShowUpdatePassword] = useState(false);
     const [showUpdateTable, setShowUpdateTable] = useState(false);
@@ -28,6 +30,15 @@ export default function Account() {
         appId: "1:175511547154:web:57ebb36215dfe8983357cb",
         measurementId: "G-PM3PDD7DJT"
     };
+    const validationSchema = Yup.object().shape({
+        avatar: Yup.string(),
+        name: Yup.string().required('Tên là bắt buộc'),
+        phone: Yup.string().required('Số điện thoại là bắt buộc'),
+        // password: Yup.string().min(6, 'Mật khẩu phải có ít nhất 6 ký tự').required('Mật khẩu là bắt buộc'),
+        // confirmPassword: Yup.string()
+        //     .oneOf([Yup.ref('password'), null], 'Mật khẩu phải trùng khớp')
+        //     .required('Xác nhận mật khẩu là bắt buộc'),
+    });
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
     const getImageData = (e) => {
@@ -70,6 +81,12 @@ export default function Account() {
     }, [])
 
 
+    const handleDeleteUser = () => {
+        dispatch(deleteUsers(userId)).then(() => {
+            navigate("/login");
+        });
+        setShowDeleteConfirmation(false);
+    };
     const handleSubmit = async (values, actions) => {
         values.username = user.username;
         values.password = user.password;
@@ -80,7 +97,7 @@ export default function Account() {
             values.avatar = imageURL;
         }
         try {
-            dispatch(editUsers({id: userId, data: values})).then(()=> {
+            dispatch(editUsers({id: userId, data: values})).then(() => {
                 setOldUserData({
                     name: user.name, phone: user.phone, password: user.password
                 })
@@ -130,48 +147,18 @@ export default function Account() {
                     </div>
                     <Formik
                         initialValues={oldUserData}
+                        validationSchema={validationSchema}
                         onSubmit={(values) => {
                             handleSubmit(values)
                         }}
                         enableReinitialize={true}
                     >
-                        <Form>
-                            {showUpdateTable && (<div>
-                                {showUpdateInfo && (<div className={"border-wallets update-profile-table"}>
-                                    <div className="form-group-edit-account close-show-if" onClick={() => {
-                                        setShowUpdateInfo(false)
-                                    }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor"
-                                             className="bi bi-x-lg" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                                        </svg>
-                                    </div>
-                                    <div className="form-group-edit-account">
-                                        <label htmlFor="avatarInput">Avatar:</label>
-                                        <img src={imageURL !== '' ? imageURL : imagDefault} alt="Avatar"
-                                             className="img-edit-account"/>
-                                        <Field type="file" name="avatar" className="form-control-file"
-                                               onChange={getImageData}/>
-                                    </div>
-                                    <div className="form-group-edit-account">
-                                        <label htmlFor="name">Name:</label>
-                                        <Field type="text" id="name" name="name" className="form-control"
-                                               placeholder="Enter name"/>
-                                    </div>
-                                    <div className="form-group-edit-account">
-                                        <label htmlFor="phone">Phone:</label>
-                                        <Field type="text" id="phone" name="phone" className="form-control"
-                                               placeholder="Enter phone"/>
-                                    </div>
-                                    <div className={"close-update-account"}>
-                                        <button type="submit" className="btn btn-secondary ">Submit</button>
-                                    </div>
-                                </div>)}
-                                {showUpdatePassword && (<div className={"border-wallets update-profile-table"}>
+                        {({errors, touched}) => (
+                            <Form>
+                                {showUpdateTable && (<div>
+                                    {showUpdateInfo && (<div className={"border-wallets update-profile-table"}>
                                         <div className="form-group-edit-account close-show-if" onClick={() => {
-                                            setShowUpdatePassword(false)
+                                            setShowUpdateInfo(false)
                                         }}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor"
@@ -181,31 +168,68 @@ export default function Account() {
                                             </svg>
                                         </div>
                                         <div className="form-group-edit-account">
-                                            <label htmlFor="password">Password:</label>
-                                            <Field type="password" id="password" name="password"
-                                                   className="form-control"
-                                                   placeholder="Enter password"/>
+                                            <label htmlFor="avatarInput">Avatar:</label>
+                                            <img src={imageURL !== '' ? imageURL : imagDefault} alt="Avatar"
+                                                 className="img-edit-account"/>
+                                            <Field type="file" name="avatar" className="form-control-file"
+                                                   onChange={getImageData}/>
                                         </div>
                                         <div className="form-group-edit-account">
-                                            <label htmlFor="password">Password:</label>
-                                            <Field type="password" id="password" name="password"
-                                                   className="form-control"
-                                                   placeholder="Enter password"/>
+                                            <label htmlFor="name">Name:</label>
+                                            <Field type="text" id="name" name="name" className="form-control"
+                                                   placeholder="Enter name"/>
+                                            {errors.name && touched.name && <div className="error">{errors.name}</div>}
                                         </div>
                                         <div className="form-group-edit-account">
-                                            <label htmlFor="password">Password:</label>
-                                            <Field type="password" id="password" name="password"
-                                                   className="form-control"
-                                                   placeholder="Enter password"/>
+                                            <label htmlFor="phone">Phone (+84):</label>
+                                            <Field type="number" id="phone" name="phone" className="form-control"
+                                                   placeholder="Enter phone"/>
+                                            {errors.phone && touched.phone &&
+                                                <div className="error">{errors.phone}</div>}
                                         </div>
                                         <div className={"close-update-account"}>
-                                            <button type="submit" className="btn btn-secondary">Submit</button>
+                                            <button type="submit" className="btn btn-secondary ">Submit</button>
                                         </div>
-                                    </div>
+                                    </div>)}
+                                    {showUpdatePassword && (<div className={"border-wallets update-profile-table"}>
+                                            <div className="form-group-edit-account close-show-if" onClick={() => {
+                                                setShowUpdatePassword(false)
+                                            }}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor"
+                                                     className="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                                </svg>
+                                            </div>
+                                            <div className="form-group-edit-account">
+                                                <label htmlFor="password">Password:</label>
+                                                <Field type="password" id="password" name="password"
+                                                       className="form-control"
+                                                       placeholder="Enter password"/>
+                                            </div>
+                                            <div className="form-group-edit-account">
+                                                <label htmlFor="password">Password:</label>
+                                                <Field type="password" id="password" name="password"
+                                                       className="form-control"
+                                                       placeholder="Enter password"/>
+                                            </div>
+                                            <div className="form-group-edit-account">
+                                                <label htmlFor="password">Password:</label>
+                                                <Field type="password" id="password" name="password"
+                                                       className="form-control"
+                                                       placeholder="Enter password"/>
+                                            </div>
+                                            <div className={"close-update-account"}>
+                                                <button type="submit" className="btn btn-secondary">Submit</button>
+                                            </div>
+                                        </div>
 
-                                )}
-                            </div>)}
-                        </Form>
+                                    )}
+                                </div>)}
+                            </Form>
+                        )}
+
                     </Formik>
                 </div>
                 <div className={"main-account-top3"}>
@@ -221,12 +245,22 @@ export default function Account() {
                     </div>
                 </div>
             </div>
-            <div className={"btn-account"}>
+            <div className="btn-account">
                 <a href="/login">
-                    <button className={"btn btn-secondary sing-out-account-btn"}>Sign out</button>
+                    <button className="btn btn-secondary sing-out-account-btn">Sign out</button>
                 </a>
-                <button className={"btn btn-danger"}>Delete</button>
+                <button onClick={() => setShowDeleteConfirmation(true)} className="btn btn-danger"
+                        style={{height: 40, marginTop: 9}}>Delete
+                </button>
+
             </div>
+
+            {showDeleteConfirmation && (
+                <div className="delete-confirmation-modal">
+                    <p>Are you sure you want to delete this user?</p>
+                    <div onClick={() => setShowDeleteConfirmation(false)} className={"delete-confirmation-modal-div"} style={{backgroundColor:"gray"}}>No</div>
+                    <div onClick={handleDeleteUser} className={"delete-confirmation-modal-div"} style={{backgroundColor:"#DC3545"}}>Delete</div>
+                </div>)}
         </div>
     </>)
 }

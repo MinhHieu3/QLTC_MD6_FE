@@ -24,8 +24,6 @@ export const editWallet = createAsyncThunk(
     'wallets/updateWallet',
     async ({id, data}) => {
         const res = await axios.put('http://localhost:8080/users/wallets/' + id, data)
-
-        console.log(res)
         return res.data
     }
 )
@@ -49,7 +47,7 @@ export const searchWallet = createAsyncThunk(
         return data
     }
 )
-export const getIndexWallet=createAsyncThunk(
+export const setIndexWallet=createAsyncThunk(
     'wallets/getIndex',
     async (index)=>{
         return index

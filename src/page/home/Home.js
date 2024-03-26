@@ -9,6 +9,13 @@ import {useEffect} from "react";
 export default function Home() {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users.users);
+    const wallets = useSelector(state => {
+        return state.wallets.wallets
+    });
+
+    const selectedWalletIndex = useSelector(state =>{
+        return  state.wallets.index;
+    });
     const handlerWallet = () => {
         dispatch(getWallets({id: users.id, token: users.accessToken}))
 
@@ -25,7 +32,7 @@ export default function Home() {
                 </div>
                 <div className="content-col-10">
                     <div className="nav-bar">
-                        <Navbar></Navbar>
+                        <Navbar wallets={wallets} selectedWalletIndex={selectedWalletIndex}></Navbar>
                     </div>
                     <div className="middle">
                         <Outlet></Outlet>
