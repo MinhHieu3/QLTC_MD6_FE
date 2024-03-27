@@ -12,7 +12,7 @@ export default function Wallet() {
     const money = wallet ? wallet.money : 0;
     const [showInfoWallets, setShowInfoWallets] = useState(false);
     const [testDetail, setTestDetail] = useState();
-
+    const total = wallet ? (wallet.money || 0) : 0;
     const handleInfoWallets = () => {
         setShowInfoWallets(true);
     };
@@ -22,10 +22,8 @@ export default function Wallet() {
     const formatMoney = (amount) => {
         return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(amount);
     };
-    const total = wallet ? (wallet.money || 0) : 0;
-
     const productDetail = detailWallets.filter((item) => item.id === testDetail);
-    console.log('productDetail',productDetail);
+
     return (
         <>
             <Link to={'add-wallets'} className={'nav-create-wallet'}>
@@ -68,10 +66,18 @@ export default function Wallet() {
                         <div className="container-detail-wallet" >
                             <div className="date-wallet-detail">
                                 <div className="date-time">26</div>
-                                <div className="time">{detail.localDate}</div>
+                                {detail.localDate && (
+                                    <div className="time">
+                                        {(() => {
+                                            const date = new Date(detail.localDate);
+                                            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                                            return date.toLocaleDateString('en-US', options);
+                                        })()}
+                                    </div>
+                                )}
                             </div>
-                            <div className="money-wallet-detail">
-                                <p>{formatMoney(detail.money)}</p>
+                            <div className="money-wallet-detail"  style={{ color: detail.description === 'Chi' ? 'red' : 'inherit' }}>
+                                <p>{detail.description === 'Chi' ? '-' : '+'} {formatMoney(detail.money)}</p>
                             </div>
                         </div>
                         {index !== detailWallets.length - 1 && <hr className="hrs"/>}
@@ -98,16 +104,22 @@ export default function Wallet() {
                                     src="https://png.pngtree.com/png-clipart/20201208/original/pngtree-isolated-parcel-box-vector-icon-png-image_5592575.jpg"
                                     className={"img-detail-wallets"}/></div>
                                 <div>
-                                    <div className={"title-name-1"}>Other Income</div>
+                                    <div className={"title-name-1"}>{detail.category.name}</div>
                                     <div className={"title-name-2"}>Description: {detail.description}
                                     </div>
-                                    <div className={"title-name-3"}>Time: {detail.localDate}</div>
+                                    <div className={"title-name-3"}>Time:  {(() => {
+                                        const date = new Date(detail.localDate);
+                                        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                                        return date.toLocaleDateString('en-US', options);
+                                    })()}</div>
                                     <hr/>
                                 </div>
                             </div>
                             <div className={"show-wallets-bottoms"}>
                                 <div className={"title-bottoms-wallets"}>Adjust Balance</div>
-                                <div className={"show-money-wallets-detail"}>{formatMoney(detail.money)}</div>
+                                <div className={"show-money-wallets-detail"} style={{ color: detail.description === 'Chi' ? 'red' : 'inherit' }}>
+                                    {detail.description === 'Chi' ? '-' : '+'} {formatMoney(detail.money)}
+                                </div>
                             </div>
                         </div>
                     )}

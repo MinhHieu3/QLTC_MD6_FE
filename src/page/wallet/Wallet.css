@@ -238,7 +238,7 @@ a.nav-create-wallet {
 
 .show-money-wallets-detail {
     color: rgba(0, 0, 0, .87);
-    color: #039be5 !important;
+    color: #039be5 ;
     font-family: roboto, sans-serif;
     font-weight: 400;
     font-size: 34px;
